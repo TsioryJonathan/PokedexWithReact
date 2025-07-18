@@ -2,16 +2,17 @@ import React from "react";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 import pokemonColors from "../utils/pokemonColors";
 import getTypeEmoji from "../utils/getTypeEmoji";
+import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
 
 function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <GlobalDetailSkeleton />;
   if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
 
   return (
     <div
-      className="m-6 p-6 md:m-10 md:p-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6"
+      className="m-6 p-6 md:m-10 md:p-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[370px]"
       style={{
         backgroundColor: pokemonColors[pokemon.color] || pokemonColors.default,
       }}

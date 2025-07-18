@@ -1,0 +1,174 @@
+export const PlantPokemon = [
+    {
+        number:"001",
+        img:'/src/assets/001.png',
+        name:"Bulbasaur",
+        element1:"Plant",
+        element2:"Poison",
+    },
+    {
+        number:"002",
+        img:"/src/assets/002.png",
+        name:"Ivysaur",
+        element1:"Plant",
+        element2:"Poison",
+    },
+    {
+        number:"003",
+        img:"/src/assets/003.png",
+        name:"Venusaur",
+        element1:"Plant",
+        element2:"Poison",
+    },
+]
+
+export const FirePokemon = [
+    {
+        number:"004",
+        img:'/src/assets/004.png',
+        name:"Charmander",
+        element1:"Fire",
+    },
+    {
+        number:"005",
+        img:"/src/assets/005.png",
+        name:"Charameleon",
+        element1:"Fire",
+    },
+    {
+        number:"006",
+        img:"/src/assets/006.png",
+        name:"Charizard",
+        element1:"Fire",
+        element2:"Flying",
+    },
+]
+
+export const WaterPokemon = [
+    {
+        number:"007",
+        img:"/src/assets/007.png",
+        name:"Squirtle",
+        element1:"Water",
+    },
+    {
+        number:"008",
+        img:"/src/assets/008.png",
+        name:"Wartortle",
+        element1:"Water",
+    },
+    {
+        number:"009",
+        img:"/src/assets/009.png",
+        name:"Blastoise",
+        element1:"Water",
+    }
+]
+
+export const InsectPokemon = [
+    {
+        number:"010",
+        img:"/src/assets/010.png",
+        name:"Caterpie",
+        element1:"Bug"
+    },
+    {
+        number:"011",
+        img:"/src/assets/011.png",
+        name:"Metapod",
+        element1:"Bug"
+    },
+    {
+        number:"012",
+        img:"/src/assets/012.png",
+        name:"Butterfree",
+        element1:"Bug",
+        element2:"Flying",
+    },
+    {
+        number:"013",
+        img:"/src/assets/013.png",
+        name:"Weedle",
+        element1:"Bug",
+        element2:"Poison",
+    },
+    {
+        number:"014",
+        img:"/src/assets/014.png",
+        name:"Kakuna",
+        element1:"Bug",
+        element2:"Poison",
+    },
+    {
+        number:"015",
+        img:"/src/assets/015.png",
+        name:"Beedrill",
+        element1:"Bug",
+        element2:"Poison",
+    }
+]
+export const NormalPokemon = [
+    {
+        number:"016",
+        img:"/src/assets/016.png",
+        name:"Pidgey",
+        element1:"Normal",
+        element2:"Flying",
+    },
+    {
+        number:"017",
+        img:"/src/assets/017.png",
+        name:"Pidgeotto",
+        element1:"Normal",
+        element2:"Flying",
+    },
+    {
+        number:"018",
+        img:"/src/assets/018.png",
+        name:"Pidgeot",
+        element1:"Normal",
+        element2:"Flying",
+    },
+    {
+        number:"019",
+        img:"/src/assets/019.png",
+        name:"Rattata",
+        element1:"Normal",
+    },
+    {
+        number:"020",
+        img:"/src/assets/020.png",
+        name:"Raticate",
+        element1:"Normal",
+    },
+    {
+        number:"021",
+        img:"/src/assets/021.png",
+        name:"Spearow",
+        element1:"Normal",
+        element2:"Flying",
+    },
+    {
+        number:"022",
+        img:"/src/assets/022.png",
+        name:"Fearow",
+        element1:"Normal",
+        element2:"Flying",
+    },
+    
+]
+
+export const SerpentPokemon = [
+    {
+        number:"023",
+        img:"/src/assets/023.png",
+        name:"Ekans",
+        element1:"Poison",
+    },
+    {
+        number:"024",
+        img:"/src/assets/024.png",
+        name:"Arbok",
+        element1:"Poison",
+    },
+]

@@ -1,7 +1,11 @@
-import React from "react";
+import { PokemonCards } from "./components/PokemonCards"
 
 function App() {
-  return <div>App</div>;
+  return (
+    <>
+      <PokemonCards/>
+    </>
+  )
 }
 
 export default App;

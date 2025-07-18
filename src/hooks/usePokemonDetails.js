@@ -4,10 +4,10 @@ export function usePokemonDetails(name) {
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
+    console.log("usePokemonDetails effect triggered with name:", name);
+    
     if (!name) return;
-
     const fetchData = async () => {
       setLoading(true);
 
@@ -50,9 +50,7 @@ export function usePokemonDetails(name) {
 
       setLoading(false);
     };
-
     fetchData();
   }, [name]);
-
   return { pokemon, loading, error };
 }

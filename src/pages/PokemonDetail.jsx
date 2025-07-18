@@ -5,7 +5,7 @@ import GlobalDetail from "../components/GlobalDetail";
 function PokemonDetail() {
   const { name } = useParams();
   return (
-    <div className="m-auto flex flex-col items-center justify-center min-h-screen bg-gray-100 w-[80%]">
+    <div className="m-auto flex flex-col items-center justify-center min-h-screen w-[80%]">
       <GlobalDetail name={name} />
     </div>
   );

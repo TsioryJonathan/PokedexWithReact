@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -55,92 +56,92 @@ html {
 :root {
   --radius: 0.625rem;
 
-  --background: #f1f5f9; /* clair pokedex */
-  --foreground: #0f172a;
+  --background: oklch(1 0 0); /* clair pokedex */
+  --foreground: oklch(0.145 0 0);
 
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #f8fafc;
-  --popover-foreground: #0f172a;
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
 
-  --primary: #d62828; /* rouge pokéball */
-  --primary-foreground: #ffffff;
+  --primary: oklch(0.205 0 0); /* rouge pokéball */
+  --primary-foreground: oklch(0.985 0 0);
 
-  --secondary: #facc15; /* jaune pikachu */
-  --secondary-foreground: #1e1e1e;
+  --secondary: oklch(0.97 0 0); /* jaune pikachu */
+  --secondary-foreground: oklch(0.205 0 0);
 
-  --accent: #3b82f6; /* bleu eau */
-  --accent-foreground: #f8fafc;
+  --accent: oklch(0.97 0 0); /* bleu eau */
+  --accent-foreground: oklch(0.205 0 0);
 
-  --destructive: #e11d48;
+  --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: #ffffff;
 
-  --muted: #e2e8f0;
-  --muted-foreground: #475569;
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
 
-  --border: #cbd5e1;
-  --input: #f8fafc;
-  --ring: #d62828;
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
 
-  --chart-1: #d62828;
-  --chart-2: #facc15;
-  --chart-3: #3b82f6;
-  --chart-4: #22c55e;
-  --chart-5: #f97316;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
 
-  --sidebar: #ffffff;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border: #cbd5e1;
-  --sidebar-ring: var(--ring);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 /* 🌙 Thème sombre (acier/nuit) */
 .dark {
-  --background: #0f172a; /* très sombre acier */
-  --foreground: #f1f5f9;
+  --background: oklch(0.145 0 0); /* très sombre acier */
+  --foreground: oklch(0.985 0 0);
 
-  --card: #1e293b;
-  --card-foreground: #f1f5f9;
-  --popover: #1e293b;
-  --popover-foreground: #f1f5f9;
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
 
-  --primary: #d62828;
-  --primary-foreground: #ffffff;
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
 
-  --secondary: #facc15;
-  --secondary-foreground: #0f172a;
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
 
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
 
-  --destructive: #f87171;
+  --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: #0f172a;
 
-  --muted: #334155;
-  --muted-foreground: #cbd5e1;
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
 
-  --border: #1e293b;
-  --input: #0f172a;
-  --ring: #facc15;
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
 
-  --chart-1: #d62828;
-  --chart-2: #facc15;
-  --chart-3: #3b82f6;
-  --chart-4: #22c55e;
-  --chart-5: #f97316;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
 
-  --sidebar: #1e293b;
-  --sidebar-foreground: #f1f5f9;
-  --sidebar-primary: var(--primary);
-  --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--accent-foreground);
-  --sidebar-border: #334155;
-  --sidebar-ring: var(--ring);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 /* 👁️ Styles de base */
@@ -150,5 +151,14 @@ html {
   }
   body {
     @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

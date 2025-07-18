@@ -36,6 +36,8 @@ export function usePokemonDetails(name) {
             name: s.stat.name,
             value: s.base_stat,
           })),
+          height: data1.height,
+          weight: data1.weight,
           description: flavorEntry?.flavor_text.replace(/\f/g, " ") || "",
           genus: genusEntry?.genus || "",
           color: color,

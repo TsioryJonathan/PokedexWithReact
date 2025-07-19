@@ -52,7 +52,7 @@ function PokemonCard({ pokemonName }) {
       </h1>
 
       {/* Types */}
-      <div className="flex justify-center gap-10 text-sm font-medium">
+      <div className="flex justify-center gap-10 ">
         {pokemon.types.map((t) => (
           <PokeTypeBadge type={t} key={t} />
         ))}
@@ -67,7 +67,7 @@ function PokemonCard({ pokemonName }) {
             </span>
             <span className="flex items-center gap-2 font-bold text-sm text-white">
               {" "}
-              <Ruler size={15} className="text-gray-300 " />
+              <Ruler size={18} className="text-gray-300 " />
               Height
             </span>
           </div>
@@ -79,31 +79,15 @@ function PokemonCard({ pokemonName }) {
             </span>
             <span className="flex items-center gap-2 font-bold text-sm text-white">
               {" "}
-              <FaDumbbell size={15} className="text-gray-300 " />
+              <FaDumbbell size={18} className="text-gray-300 " />
               Weight
             </span>
           </div>
         )}
       </div>
 
-      {/* See More Detail Btn*/}
-      <div className="flex items-center justify-center mt-3 text-white group">
-        <Link
-          to={`pokemon/${pokemon.name}`}
-          className="flex items-center justify-center bg-gray-500 w-fit px-5 py-2 rounded-sm font-semibold text-md"
-        >
-          <span>
-            <FaBolt
-              size={18}
-              className="group-hover:-translate-y-0.5 transition-transform duration-150 ease-in-out"
-            />
-          </span>
-          See more details
-        </Link>
-      </div>
-
       {/* Id Badge */}
-      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-white mb-3 bg-gray-300/40 flex items-center justify-center px-3">
+      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-white mb-3 bg-gradient-to-tl from-yellow-400 via-yellow-500 to-yellow-600 flex items-center justify-center px-3 border-none">
         #{pokemon.id}
       </Badge>
     </Link>

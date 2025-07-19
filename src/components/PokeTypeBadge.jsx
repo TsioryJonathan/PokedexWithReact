@@ -13,7 +13,7 @@ function PokeTypeBadge({ type }) {
         className
       )}
     >
-      <Icon className="text-white " />
+      <Icon className="text-white text-2xl" />
       {type.toUpperCase()}
     </Badge>
   );

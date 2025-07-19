@@ -1,30 +1,33 @@
-import * as React from "react";
-import usePagination from "@mui/material/usePagination";
-import { styled } from "@mui/material/styles";
-import { PokeCardDisplayer } from "./PokeCardDisplayer";
-import usePokemonList from "@/hooks/usePokemonList";
+import React, { useEffect, useState } from "react";
+import { Button } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import PokeCardDisplayer from "./PokeCardDisplayer";
+import usePokemonList from "@/hooks/usePokemonList";
 
-const List = styled("ul")({
-  listStyle: "none",
-  padding: 0,
-  margin: 0,
-  display: "flex",
-  gap: "0.5rem",
-  justifyContent: "center",
-});
-
-export function PokemonList() {
-  const [page, setPage] = React.useState(1);
+function PokemonList() {
+  const [page, setPage] = useState(1);
   const itemsPerPage = 12;
   const { pokemonList, loading, error } = usePokemonList();
-  const count = pokemonList ? Math.ceil(pokemonList.length / itemsPerPage) : 0;
+  const count = pokemonList ? Math.ceil(pokemonList.length / itemsPerPage) : 1;
 
-  const { items } = usePagination({
-    count: count || 1,
-    page,
-    onChange: (_, newPage) => setPage(newPage),
-  });
+  const savedPage = localStorage.getItem("PokemonPage");
+  useEffect(() => {
+    if (savedPage) {
+      setPage(Number(savedPage));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("PokemonPage", page);
+  }, [page]);
+
+  const handlePrevious = () => {
+    if (page > 1) setPage((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    if (page < count) setPage((prev) => prev + 1);
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading Pokémon data</div>;
@@ -37,41 +40,30 @@ export function PokemonList() {
         pokemonList={pokemonList}
       />
 
-      <nav>
-        <List>
-          {items.map(({ page, type, selected, ...item }, index) => {
-            let children = null;
-
-            if (type === "start-ellipsis" || type === "end-ellipsis") {
-              children = "…";
-            } else if (type === "page") {
-              children = (
-                <button
-                  type="button"
-                  className={`px-3 py-1 rounded cursor-pointer ${
-                    selected ? "bg-blue-500 text-white" : "bg-gray-200"
-                  }`}
-                  {...item}
-                >
-                  {page}
-                </button>
-              );
-            } else {
-              let icon = type === "next" ? <ArrowForward /> : <ArrowBack />;
-              children = (
-                <button
-                  type="button"
-                  className="px-3 py-1 bg-gray-400 hover:bg-blue-400 rounded cursor-pointer"
-                  {...item}
-                >
-                  {icon}
-                </button>
-              );
-            }
-            return <li key={index}>{children}</li>;
-          })}
-        </List>
-      </nav>
+      <div className="flex items-center justify-center gap-8">
+        <Button
+          variant="contained"
+          color="inherit"
+          startIcon={<ArrowBack />}
+          onClick={handlePrevious}
+          disabled={page <= 1}
+          sx={{ borderRadius: "8px", textTransform: "none" }}
+        >
+          Précédent
+        </Button>
+        <Button
+          variant="contained"
+          color="inherit"
+          endIcon={<ArrowForward />}
+          onClick={handleNext}
+          disabled={page >= count}
+          sx={{ borderRadius: "8px", textTransform: "none" }}
+        >
+          Suivant
+        </Button>
+      </div>
     </div>
   );
 }
+
+export default PokemonList;

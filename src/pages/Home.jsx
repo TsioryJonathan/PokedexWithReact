@@ -1,4 +1,4 @@
-import { PokemonList } from "@/components/PokemonList";
+import PokemonList from "@/components/PokemonList";
 import React from "react";
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
     <div className="min-w-screen min-h-screen bg-background px-10 py-10">
       <PokemonList />
     </div>
-  );``
+  );
 }
 
 export default Home;

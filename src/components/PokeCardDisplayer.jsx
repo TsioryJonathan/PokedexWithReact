@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PokemonCard from "./PokemonCard.jsx";
 
-export const PokeCardDisplayer = ({ pokemonList, page, itemsPerPage }) => {
-
+const PokeCardDisplayer = ({page, pokemonList, itemsPerPage }) => {
+  
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const toShow = pokemonList.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
@@ -15,3 +19,5 @@ export const PokeCardDisplayer = ({ pokemonList, page, itemsPerPage }) => {
     </div>
   );
 };
+
+export default PokeCardDisplayer;

@@ -91,7 +91,7 @@ function PokemonCard({ pokemonName }) {
             <p className="text-sm mb-5">{pokemon.genus}</p>
           </div>
           <div className="h-32 justify-center align-center items-center">
-            <p className="text-lg mb-2 text-center mx-8 mt-4">{pokemon.description}</p>
+            <p className="text-base mb-2 text-center mx-8 mt-4">{pokemon.description}</p>
           </div>
           <div className="items-center bottom-0 flex flex-col">
             <div className="mb-5">

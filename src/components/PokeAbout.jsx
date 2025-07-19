@@ -8,8 +8,12 @@ import {
   Sparkles,
   Egg,
   BarChart,
+<<<<<<< HEAD
   Puzzle,
   Star,
+=======
+  Shapes,
+>>>>>>> c035a37 (feat: add ComparePage component)
 } from "lucide-react";
 import {
   FaMars,

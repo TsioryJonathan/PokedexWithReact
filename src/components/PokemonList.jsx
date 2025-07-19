@@ -37,19 +37,19 @@ export function PokemonList() {
         pokemonList={pokemonList}
       />
 
-      <nav>
+      <nav className="py-2 w-140 bg-gray-200 rounded-full shadow-xl flex items-center justify-center align-center">
         <List>
           {items.map(({ page, type, selected, ...item }, index) => {
             let children = null;
 
             if (type === "start-ellipsis" || type === "end-ellipsis") {
-              children = "…";
+              children = "...";
             } else if (type === "page") {
               children = (
                 <button
                   type="button"
-                  className={`px-3 py-1 rounded cursor-pointer ${
-                    selected ? "bg-blue-500 text-white" : "bg-gray-200"
+                  className={`py-1 px-3 mx-2 rounded-full cursor-pointer items-center ${
+                    selected ? "bg-red-400 text-white shadow-lg border-r-1 border-r-gray-900" : "bg-red-100 border-l-2 border-r-2 border-r-red-400 border-l-gray-100 shadow-lg"
                   }`}
                   {...item}
                 >
@@ -61,7 +61,7 @@ export function PokemonList() {
               children = (
                 <button
                   type="button"
-                  className="px-3 py-1 bg-gray-400 hover:bg-blue-400 rounded cursor-pointer"
+                  className="mx-3 p-2 hover:bg-gray-400 rounded-full cursor-pointer"
                   {...item}
                 >
                   {icon}

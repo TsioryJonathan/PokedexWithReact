@@ -22,7 +22,7 @@ function PokeCardFront({ pokemon }) {
         <img
           src={pokemon.image}
           alt={pokemon.name}
-          className="relative z-10 max-h-full object-contain transition-all ease-in-out duration-300 group-hover:scale-110"
+          className="relative z-10 w-[150px] h-[150px] object-contain transition-all ease-in-out duration-300 group-hover:scale-110"
         />
       </div>
 

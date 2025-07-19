@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import PokemonCardSkeleton from "@/components/PokemonCardSkeleton";
 import assets from "@/assets/assets";
 import PokeTypeBadge from "./PokeTypeBadge";
-import { Dot } from "lucide-react";
+import { Dot, Ruler } from "lucide-react";
 import { Badge } from "./ui/badge";
+
+import { FaBolt, FaDumbbell } from "react-icons/fa";
 
 function PokemonCard({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
@@ -19,14 +21,11 @@ function PokemonCard({ pokemonName }) {
   return (
     <Link
       key={pokemon.id}
-      className={`min-w-[292px] min-h-[357px] relative rounded-xl shadow-md p-5 text-center border-gray-300 h-fit pb-10 group transition-transform duration-300 ease-in-out ${getTypeGradient(
+      className={`min-w-[292px] min-h-[400px] relative rounded-xl shadow-md px-5 pt-5 pb-15 text-center border-gray-300 h-fit group transition-transform duration-300 ease-in-out ${getTypeGradient(
         pokemon.types[0].toLowerCase()
       )} `}
       to={`pokemon/${pokemon.name}`}
     >
-      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-white mb-3 bg-gray-300/40 flex items-center justify-center px-3">
-        #{pokemon.id}
-      </Badge>
       {/* Image Section */}
       <div className="relative w-full aspect-[4/3] flex items-center justify-center rounded-lg overflow-hidden">
         {/* Background decorative image */}
@@ -53,11 +52,60 @@ function PokemonCard({ pokemonName }) {
       </h1>
 
       {/* Types */}
-      <div className="flex justify-center gap-2  text-sm font-medium">
+      <div className="flex justify-center gap-10 text-sm font-medium">
         {pokemon.types.map((t) => (
           <PokeTypeBadge type={t} key={t} />
         ))}
       </div>
+
+      {/* Height && Weight*/}
+      <div className="flex justify-center gap-10 mt-3">
+        {pokemon.height && (
+          <div className="flex flex-col">
+            <span className="text-gray-300 font-bold text-xl">
+              {pokemon.height / 10} M
+            </span>
+            <span className="flex items-center gap-2 font-bold text-sm text-white">
+              {" "}
+              <Ruler size={15} className="text-gray-300 " />
+              Height
+            </span>
+          </div>
+        )}
+        {pokemon.weight && (
+          <div className="flex flex-col">
+            <span className="text-gray-300 font-bold text-xl">
+              {pokemon.weight / 10} KG
+            </span>
+            <span className="flex items-center gap-2 font-bold text-sm text-white">
+              {" "}
+              <FaDumbbell size={15} className="text-gray-300 " />
+              Weight
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* See More Detail Btn*/}
+      <div className="flex items-center justify-center mt-3 text-white group">
+        <Link
+          to={`pokemon/${pokemon.name}`}
+          className="flex items-center justify-center bg-gray-500 w-fit px-5 py-2 rounded-sm font-semibold text-md"
+        >
+          <span>
+            <FaBolt
+              size={18}
+              className="group-hover:-translate-y-0.5 transition-transform duration-150 ease-in-out"
+            />
+          </span>
+          See more details
+        </Link>
+      </div>
+
+      {/* Id Badge */}
+      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-white mb-3 bg-gray-300/40 flex items-center justify-center px-3">
+        #{pokemon.id}
+      </Badge>
     </Link>
   );
 }

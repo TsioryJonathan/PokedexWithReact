@@ -1,4 +1,4 @@
-import { GiHeartPlus, GiShield, GiBroadsword } from "react-icons/gi"; // Icônes de react-icons
+import { GiHeartPlus, GiShield, GiBroadsword } from "react-icons/gi";
 
 export const PokeStatBadge = ({ pokeStatData }) => {
   if (!pokeStatData || !Array.isArray(pokeStatData)) return null;

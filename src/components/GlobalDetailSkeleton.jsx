@@ -2,7 +2,7 @@ import { Skeleton } from "./ui/skeleton";
 
 export default function GlobalDetailSkeleton() {
   return (
-    <div className="m-6 p-6 md:m-10 md:p-10 rounded-2xl shadow-xl bg-muted text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[370px]">
+    <div className="rounded-2xl shadow-xl bg-muted text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[370px]">
       <div className="w-full md:w-2/5 flex items-center justify-center relative">
         <div className="absolute w-[250px] h-[250px] bg-white/20 rounded-full blur-2xl" />
         <Skeleton className="w-[80%] max-w-[300px] aspect-square rounded-xl z-10 bg-gray-500" />

@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import EvolutionChain from "./EvolutionChain";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import PokeAbout from "./PokeAbout";
+import BaseStatsContent from "./BaseStatsContent";
 
 function PokeDetailModal({ pokemonName, setIsOpen }) {
   useEffect(() => {
@@ -26,7 +27,7 @@ function PokeDetailModal({ pokemonName, setIsOpen }) {
 
   return (
     <div
-      className="fixed inset-0 z-50  backdrop-blur-xl flex items-start pt-2 justify-center"
+      className="fixed inset-0 z-50  backdrop-blur-xl flex items-start pt-2 justify-center "
       onClick={() => setIsOpen(false)}
     >
       <div
@@ -61,11 +62,14 @@ function PokeDetailModal({ pokemonName, setIsOpen }) {
                 </TabsTrigger>
               ))}
             </TabsList>
-            <TabsContent value="evolution">
+            <TabsContent value="evolution" className="w-full">
               <EvolutionChain pokemonName={pokemonName} />
             </TabsContent>
-            <TabsContent value="about">
+            <TabsContent value="about" className="w-full">
               <PokeAbout pokemonName={pokemonName} />
+            </TabsContent>
+            <TabsContent value="stat" className="w-full">
+              <BaseStatsContent pokemonName={pokemonName} />
             </TabsContent>
           </Tabs>
         </div>

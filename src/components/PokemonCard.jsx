@@ -39,7 +39,7 @@ function PokemonCard({ pokemonName }) {
         <img
           src={pokemon.image}
           alt={pokemon.name}
-          className="relative z-10 max-h-full object-contain group-hover:scale-105 transition-all ease-in-out duration-150"
+          className="relative z-10 max-h-full object-contain group-hover:scale-110 transition-all ease-in-out duration-300"
         />
       </div>
 

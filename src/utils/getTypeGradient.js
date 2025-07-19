@@ -21,8 +21,6 @@ const typeGradients = {
 };
 
 const getTypeGradient = (type) => {
-  console.log(type);
-
   return `bg-gradient-to-br ${
     typeGradients[type.toLowerCase()] || typeGradients.default
   }`;

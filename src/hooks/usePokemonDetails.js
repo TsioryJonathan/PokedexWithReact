@@ -5,12 +5,9 @@ export function usePokemonDetails(name) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    console.log("usePokemonDetails effect triggered with name:", name);
-
     if (!name) return;
     const fetchData = async () => {
       setLoading(true);
-
       try {
         const res1 = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
         const data1 = await res1.json();

@@ -34,7 +34,6 @@ function PokemonCard({ pokemonName }) {
           pokemon.types[0].toLowerCase()
         )} `}
         onClick={() => {
-          console.log("ll");
           setIsOpenModal(true);
         }}
       >

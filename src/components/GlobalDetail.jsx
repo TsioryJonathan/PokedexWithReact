@@ -2,21 +2,18 @@ import React from "react";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 import pokemonColors from "../utils/pokemonColors";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
-import getTypeIcon from "../utils/getTypeIcon";
 import { Volume2 } from "lucide-react";
+import { Button } from "./ui/button";
+import PokeTypeBadge from "./PokeTypeBadge";
 
 function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
-  const Icon = getTypeIcon(pokemon?.types?.[0] || "normal");
-
   if (loading) return <GlobalDetailSkeleton />;
   if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
 
-  console.log(pokemon.cries);
-
   return (
     <div
-      className="px-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[100px] w-full h-fit"
+      className="px-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[100px] w-full h-fit relative"
       style={{
         backgroundColor: pokemonColors[pokemon.color] || pokemonColors.default,
       }}
@@ -36,6 +33,7 @@ function GlobalDetail({ name }) {
           <h2 className="text-4xl md:text-5xl font-bold capitalize">
             {pokemon.name}
           </h2>
+
           <span className=" text-3xl text-white/40 font-semibold">
             #{pokemon.id}
           </span>
@@ -45,24 +43,19 @@ function GlobalDetail({ name }) {
         <p className="italic text-sm md:text-base">{pokemon.description}</p>
 
         <div className="flex gap-3 flex-wrap mt-4">
-          {pokemon.types.map((type) => (
-            <span
-              key={type}
-              className="bg-white/20 px-3 py-1 rounded-lg capitalize text-sm font-medium"
-            >
-              <Icon className="inline mr-1" />
-              {type}
-            </span>
+          {pokemon.types.map((t) => (
+            <PokeTypeBadge type={t} key={t} />
           ))}
         </div>
+
         {pokemon.cries && (
-          <button
+          <Button
             onClick={() => new Audio(pokemon.cries).play()}
-            className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded hover:bg-gray-200"
+            className="absolute bottom-10 right-10 flex items-center gap-2 w-fit px-3 py-1 rounded-full hover:bg-gray-200 cursor-pointer font-bold"
           >
             <Volume2 className="w-4 h-4" />
-            Écouter le cri
-          </button>
+            Cry
+          </Button>
         )}
       </div>
     </div>

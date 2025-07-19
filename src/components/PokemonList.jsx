@@ -37,7 +37,7 @@ export function PokemonList() {
         pokemonList={pokemonList}
       />
 
-      <nav className="py-2 w-140 bg-gray-200 rounded-full shadow-xl flex items-center justify-center align-center">
+      <nav className="py-2 bg-gray-200 rounded-full shadow-xl flex items-center justify-center align-center">
         <List>
           {items.map(({ page, type, selected, ...item }, index) => {
             let children = null;
@@ -61,7 +61,7 @@ export function PokemonList() {
               children = (
                 <button
                   type="button"
-                  className="mx-3 p-2 hover:bg-gray-400 rounded-full cursor-pointer"
+                  className="mx-5 p-2 hover:bg-gray-400 rounded-full cursor-pointer"
                   {...item}
                 >
                   {icon}

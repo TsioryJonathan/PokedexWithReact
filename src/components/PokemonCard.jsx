@@ -29,7 +29,6 @@ function PokemonCard({ pokemonName }) {
         {/* Background decorative image */}
         <img
           src="/src/assets/BG.png"
-          alt="card background"
           className="absolute inset-0 w-full h-full object-cover opacity-30 brightness-75 "
         />
         {/* Pokemon image */}

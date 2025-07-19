@@ -7,7 +7,6 @@ export function usePokemonDetails(name) {
 
   useEffect(() => {
     if (!name) return;
-    let cancelled = false;
 
     const fetchData = async () => {
       setLoading(true);
@@ -24,7 +23,6 @@ export function usePokemonDetails(name) {
         if (!res2.ok) throw new Error("Species not found");
         const data2 = await res2.json();
 
-        
         const flavorEntry = data2.flavor_text_entries.find(
           (e) => e.language.name === "en"
         );
@@ -36,7 +34,6 @@ export function usePokemonDetails(name) {
             ?.replace(/\n|\r/g, " ")
             ?.trim() || "";
 
-        
         const evYields = data1.stats
           .filter((s) => s.effort > 0)
           .map((s) => ({
@@ -44,13 +41,11 @@ export function usePokemonDetails(name) {
             effort: s.effort,
           }));
 
-        
         const abilities = data1.abilities.map((a) => ({
           name: a.ability.name,
           is_hidden: a.is_hidden,
         }));
 
-        
         const heldItems = data1.held_items.map((h) => h.item.name);
 
         const image =
@@ -70,7 +65,7 @@ export function usePokemonDetails(name) {
             effort: s.effort,
           })),
           abilities,
-          weight: data1.weight, 
+          weight: data1.weight,
           height: data1.height,
           base_experience: data1.base_experience,
           forms: data1.forms.map((f) => f.name),
@@ -93,23 +88,19 @@ export function usePokemonDetails(name) {
           generation: data2.generation?.name,
           cries: data1.cries?.latest || null,
           ev_yields: evYields,
+          moves: data1.moves.map((m) => m.move.name),
         };
 
-        if (!cancelled) setPokemon(pokemonData);
+        setPokemon(pokemonData);
       } catch (e) {
-        if (!cancelled) {
-          console.error(e);
-          setError(e.message || "Failed to fetch pokemon details.");
-        }
+        console.error(e);
+        setError(e.message || "Failed to fetch pokemon details.");
       } finally {
-        if (!cancelled) setLoading(false);
+        setLoading(false);
       }
     };
 
     fetchData();
-    return () => {
-      cancelled = true;
-    };
   }, [name]);
 
   return { pokemon, loading, error };

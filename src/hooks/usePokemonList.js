@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchPokemonList } from "../api/pokemon";
 
-function usePokemonList(offset = 0) {
+function usePokemonList() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ function usePokemonList(offset = 0) {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchPokemonList(offset);
+        const data = await fetchPokemonList();
         setPokemonList(data);
       } catch (err) {
         setError("Error while loading pokemons.");
@@ -22,7 +22,7 @@ function usePokemonList(offset = 0) {
     };
 
     fetchData();
-  }, [offset]);
+  }, []);
 
   return { pokemonList, loading, error };
 }

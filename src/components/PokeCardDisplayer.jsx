@@ -1,7 +1,7 @@
 import React from "react";
 import PokemonCard from "./PokemonCard.jsx";
 
-export const PokeCardDisplayer = ({ pokemonList, page, itemsPerPage }) => {
+const PokeCardDisplayer = ({page, pokemonList, itemsPerPage }) => {
 
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -15,3 +15,5 @@ export const PokeCardDisplayer = ({ pokemonList, page, itemsPerPage }) => {
     </div>
   );
 };
+
+export default PokeCardDisplayer;

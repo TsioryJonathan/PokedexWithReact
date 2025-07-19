@@ -54,14 +54,14 @@ function PokemonList() {
           disabled={page <= 1}
         >
           <ArrowBack />
-          Précédent
+          Previous
         </Button>
         <Button
           className=" text-white hover:bg-primary-dark bg-gray-800/50 text-text cursor-pointer"
           onClick={handleNext}
           disabled={page >= count}
         >
-          Suivant
+          Next
           <ArrowForward />
         </Button>
       </div>

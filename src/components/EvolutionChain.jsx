@@ -44,9 +44,12 @@ function EvolutionChain({ pokemonName }) {
       style={{ backgroundColor: bgColor }}
     >
       <h1 className="text-3xl font-bold">Evolution Chain</h1>
-      <div className="flex items-center gap-8 justify-center px-10 flex-wrap">
+      <div className="flex items-center gap-8 justify-center px-10 flex-wrap flex-col md:flex-row">
         {evolutionDetails.map((poke, index) => (
-          <div key={poke.id} className="flex items-center gap-8">
+          <div
+            key={poke.id}
+            className="flex items-center flex-col md:flex-row gap-8"
+          >
             <div className="text-center">
               <img
                 src={poke.sprites.other["official-artwork"].front_default}
@@ -58,7 +61,7 @@ function EvolutionChain({ pokemonName }) {
 
             {index < evolutionDetails.length - 1 && (
               <span className="text-white text-3xl">
-                <FaArrowRight />
+                <FaArrowRight className="rotate-90 md:rotate-0" />
               </span>
             )}
           </div>

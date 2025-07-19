@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+* {
+  font-family: "Raleway", sans-serif;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -169,10 +173,10 @@ body {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 0.4vw;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: var(--color-primary);
   border-radius: 10px;
   position: fixed;
@@ -180,5 +184,5 @@ body {
 }
 
 .shadow-shadow {
-  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.20));
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.2));
 }

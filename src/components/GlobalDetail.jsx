@@ -1,7 +1,7 @@
 import React from "react";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 import pokemonColors from "../utils/pokemonColors";
-import getTypeEmoji from "../utils/getTypeEmoji";
+import getTypeEmoji from "../utils/getTypeIcon";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
 
 function GlobalDetail({ name }) {

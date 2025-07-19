@@ -1,8 +1,11 @@
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
-import getTypeColor from "@/utils/getTypeColor";
-import getTypeEmoji from "@/utils/getTypeEmoji";
+import getTypeGradient from "@/utils/getTypeGradient";
 import { Link } from "react-router-dom";
 import PokemonCardSkeleton from "@/components/PokemonCardSkeleton";
+import assets from "@/assets/assets";
+import PokeTypeBadge from "./PokeTypeBadge";
+import { Dot } from "lucide-react";
+import { Badge } from "./ui/badge";
 
 function PokemonCard({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
@@ -16,18 +19,21 @@ function PokemonCard({ pokemonName }) {
   return (
     <Link
       key={pokemon.id}
-      className={`min-w-[292px] min-h-[357px] relative to-white rounded-xl shadow-md p-5 text-center border-gray-300 h-fit pb-10 group transition-transform duration-300 ease-in-out ${getTypeColor(
+      className={`min-w-[292px] min-h-[357px] relative rounded-xl shadow-md p-5 text-center border-gray-300 h-fit pb-10 group transition-transform duration-300 ease-in-out ${getTypeGradient(
         pokemon.types[0].toLowerCase()
       )} `}
       to={`pokemon/${pokemon.name}`}
     >
+      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-white mb-3 bg-gray-300/40 flex items-center justify-center px-3">
+        #{pokemon.id}
+      </Badge>
       {/* Image Section */}
       <div className="relative w-full aspect-[4/3] flex items-center justify-center rounded-lg overflow-hidden">
         {/* Background decorative image */}
         <img
-          src="/src/assets/BG.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-30 brightness-75 "
+          src={assets.bg}
+          alt="Bg Pokeball"
+          className="absolute inset-0 w-full h-full object-cover opacity-30 brightness-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] "
         />
         {/* Pokemon image */}
         <img
@@ -38,18 +44,18 @@ function PokemonCard({ pokemonName }) {
       </div>
 
       {/* Text Info */}
-      <h1 className="text-2xl font-extrabold mt-4 capitalize text-gray-900">
-        {pokemon.name}
+      <h1 className="text-2xl font-extrabold capitalize text-white">
+        <span className="flex items-center justify-center">
+          <Dot size={64} />
+          {pokemon.name}
+          <Dot size={64} />
+        </span>
       </h1>
-      <h2 className="text-sm text-gray-600 mb-3">#{pokemon.id}</h2>
 
       {/* Types */}
-      <div className="flex justify-center gap-2 mt-2 text-sm font-medium">
+      <div className="flex justify-center gap-2  text-sm font-medium">
         {pokemon.types.map((t) => (
-          <div className="bg-gray-200/50 px-2 py-1 rounded-md flex gap-2 items-center">
-            <span>{getTypeEmoji(t)}</span>
-            {t}
-          </div>
+          <PokeTypeBadge type={t} key={t} />
         ))}
       </div>
     </Link>

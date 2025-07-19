@@ -6,7 +6,7 @@ export function usePokemonDetails(name) {
   const [error, setError] = useState(null);
   useEffect(() => {
     console.log("usePokemonDetails effect triggered with name:", name);
-    
+
     if (!name) return;
     const fetchData = async () => {
       setLoading(true);
@@ -41,6 +41,7 @@ export function usePokemonDetails(name) {
           description: flavorEntry?.flavor_text.replace(/\f/g, " ") || "",
           genus: genusEntry?.genus || "",
           color: color,
+          cries: data1.cries.latest,
         };
         setPokemon(pokemonData);
       } catch (error) {

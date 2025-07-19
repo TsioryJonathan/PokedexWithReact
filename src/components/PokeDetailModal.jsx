@@ -30,15 +30,15 @@ function PokeDetailModal({ pokemonName, setIsOpen }) {
       onClick={() => setIsOpen(false)}
     >
       <div
-        className="relative w-[90vw] max-h-[90vh] rounded-xl overflow-y-auto "
+        className="w-[90vw] max-h-[90vh] rounded-xl overflow-y-auto "
         onClick={(e) => e.stopPropagation()}
       >
-        <Button
-          className="absolute top-4 right-4 text-white bg-transparent hover:bg-gray-700 p-2"
+        <button
+          className="absolute top-2 right-4 z-99 text-white bg-transparent rounded-lg cursor-pointer hover:bg-gray-700 p-2 w-fit h-fit"
           onClick={() => setIsOpen(false)}
         >
-          <X />
-        </Button>
+          <X size={28} />
+        </button>
 
         <div className="flex flex-col gap-6">
           <GlobalDetail name={pokemonName} />

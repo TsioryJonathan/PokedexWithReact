@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import PokeCardDisplayer from "./PokeCardDisplayer";
 import usePokemonList from "@/hooks/usePokemonList";
 import { Loader2 } from "lucide-react";
+import { Button } from "./ui/button";
 
 function PokemonList() {
   const { pokemonList, loading, error } = usePokemonList();
@@ -49,24 +49,20 @@ function PokemonList() {
 
       <div className="flex items-center justify-center gap-8">
         <Button
-          variant="contained"
-          color="inherit"
-          startIcon={<ArrowBack />}
+          className=" text-white hover:bg-primary-dark bg-gray-800/50 text-text cursor-pointer"
           onClick={handlePrevious}
           disabled={page <= 1}
-          sx={{ borderRadius: "8px", textTransform: "none" }}
         >
+          <ArrowBack />
           Précédent
         </Button>
         <Button
-          variant="contained"
-          color="inherit"
-          endIcon={<ArrowForward />}
+          className=" text-white hover:bg-primary-dark bg-gray-800/50 text-text cursor-pointer"
           onClick={handleNext}
           disabled={page >= count}
-          sx={{ borderRadius: "8px", textTransform: "none" }}
         >
           Suivant
+          <ArrowForward />
         </Button>
       </div>
     </div>

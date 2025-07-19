@@ -1,10 +1,9 @@
-import React from "react";
-import { usePokemonDetails } from "../hooks/usePokemonDetails";
-import pokemonColors from "../utils/pokemonColors";
+import { usePokemonDetails } from "@/hooks/usePokemonDetails";
+import pokemonColors from "@/utils/pokemonColors";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
-import { Volume2 } from "lucide-react";
-import { Button } from "./ui/button";
 import PokeTypeBadge from "./PokeTypeBadge";
+import { Button } from "./ui/button";
+import { Volume2 } from "lucide-react";
 
 function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
@@ -13,45 +12,45 @@ function GlobalDetail({ name }) {
 
   return (
     <div
-      className="px-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[100px] w-full h-fit relative"
+      className="rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full px-6 py-4 relative"
       style={{
         backgroundColor: pokemonColors[pokemon.color] || pokemonColors.default,
+        backgroundImage:
+          "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6))",
       }}
     >
       {/* Image */}
-      <div className="w-full md:w-2/5 flex items-center justify-center relative">
+      <div className="w-full md:w-1/3 flex justify-center items-center">
         <img
           src={pokemon.image}
           alt={pokemon.name}
-          className="w-full h-full max-w-[300px] object-contain "
+          className="w-48 h-48 object-contain"
           loading="lazy"
         />
       </div>
-      {/* Info */}
-      <div className="flex flex-col w-full md:w-3/5 gap-2 py-5">
-        <div className="flex justify-between items-center">
-          <h2 className="text-4xl md:text-5xl font-bold capitalize">
-            {pokemon.name}
-          </h2>
 
-          <span className=" text-3xl text-white/40 font-semibold">
+      {/* Info */}
+      <div className="w-full md:w-2/3 flex flex-col gap-2">
+        <div className="flex justify-between items-center">
+          <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
+          <span className="text-xl text-white/50 font-semibold">
             #{pokemon.id}
           </span>
         </div>
 
-        <span className="text-sm text-gray-200">{pokemon.genus}</span>
-        <p className="italic text-sm md:text-base">{pokemon.description}</p>
+        <span className="text-sm text-white/80">{pokemon.genus}</span>
+        <p className="italic text-sm leading-snug">{pokemon.description}</p>
 
-        <div className="flex gap-3 flex-wrap mt-4">
+        <div className="flex flex-wrap gap-2 mt-2">
           {pokemon.types.map((t) => (
-            <PokeTypeBadge type={t} key={t} />
+            <PokeTypeBadge key={t} type={t} />
           ))}
         </div>
 
         {pokemon.cries && (
           <Button
             onClick={() => new Audio(pokemon.cries).play()}
-            className="absolute bottom-10 right-10 flex items-center gap-2 w-fit px-3 py-1 rounded-full hover:bg-gray-200 cursor-pointer font-bold"
+            className="mt-3 w-fit px-3 py-1 flex items-center gap-2 rounded-full hover:bg-white/20 bg-white/10 text-white"
           >
             <Volume2 className="w-4 h-4" />
             Cry
@@ -61,5 +60,4 @@ function GlobalDetail({ name }) {
     </div>
   );
 }
-
 export default GlobalDetail;

@@ -1,18 +1,19 @@
 import React from "react";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 import pokemonColors from "../utils/pokemonColors";
-import getTypeEmoji from "../utils/getTypeIcon";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
+import { Volume2 } from "lucide-react";
+import { Button } from "./ui/button";
+import PokeTypeBadge from "./PokeTypeBadge";
 
 function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
-
   if (loading) return <GlobalDetailSkeleton />;
   if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
 
   return (
     <div
-      className="m-6 p-6 md:m-10 md:p-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[370px]"
+      className="px-10 rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center justify-between gap-6 md:min-w-[1012px] md:min-h-[100px] w-full h-fit relative"
       style={{
         backgroundColor: pokemonColors[pokemon.color] || pokemonColors.default,
       }}
@@ -22,16 +23,17 @@ function GlobalDetail({ name }) {
         <img
           src={pokemon.image}
           alt={pokemon.name}
-          className="w-[80%] max-w-[300px] object-contain"
+          className="w-full h-full max-w-[300px] object-contain "
           loading="lazy"
         />
       </div>
       {/* Info */}
-      <div className="flex flex-col w-full md:w-3/5 gap-2">
+      <div className="flex flex-col w-full md:w-3/5 gap-2 py-5">
         <div className="flex justify-between items-center">
           <h2 className="text-4xl md:text-5xl font-bold capitalize">
             {pokemon.name}
           </h2>
+
           <span className=" text-3xl text-white/40 font-semibold">
             #{pokemon.id}
           </span>
@@ -41,16 +43,20 @@ function GlobalDetail({ name }) {
         <p className="italic text-sm md:text-base">{pokemon.description}</p>
 
         <div className="flex gap-3 flex-wrap mt-4">
-          {pokemon.types.map((type) => (
-            <span
-              key={type}
-              className="bg-white/20 px-3 py-1 rounded-lg capitalize text-sm font-medium"
-            >
-              {getTypeEmoji(type)}
-              {type}
-            </span>
+          {pokemon.types.map((t) => (
+            <PokeTypeBadge type={t} key={t} />
           ))}
         </div>
+
+        {pokemon.cries && (
+          <Button
+            onClick={() => new Audio(pokemon.cries).play()}
+            className="absolute bottom-10 right-10 flex items-center gap-2 w-fit px-3 py-1 rounded-full hover:bg-gray-200 cursor-pointer font-bold"
+          >
+            <Volume2 className="w-4 h-4" />
+            Cry
+          </Button>
+        )}
       </div>
     </div>
   );

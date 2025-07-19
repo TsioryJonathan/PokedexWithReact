@@ -1,63 +1,81 @@
+// GlobalDetail.jsx
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
 import PokeTypeBadge from "./PokeTypeBadge";
-import { Button } from "./ui/button";
 import { Volume2 } from "lucide-react";
 
 function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
+
   if (loading) return <GlobalDetailSkeleton />;
-  if (error) return <p className="text-center text-red-500 mt-10">{error}</p>;
+  if (error || !pokemon) return <p className="text-red-500">Error loading.</p>;
+
+  const base = pokemonColors[pokemon.color] || pokemonColors.default;
 
   return (
-    <div
-      className="rounded-2xl shadow-xl text-white flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full px-6 py-4 relative"
-      style={{
-        backgroundColor: pokemonColors[pokemon.color] || pokemonColors.default,
-        backgroundImage:
-          "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6))",
-      }}
-    >
-      {/* Image */}
-      <div className="w-full md:w-1/3 flex justify-center items-center">
+    <div className="relative flex flex-col md:flex-row gap-6 p-6 md:p-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+    
+      <div
+        className="absolute inset-0 opacity-80"
+        style={{
+          background: `linear-gradient(135deg, ${base} 0%, #0f1115 100%)`,
+        }}
+      />
+      <div className="absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.18),transparent_60%)]" />
+
+      {/* Pokémon Image */}
+      <div className="relative md:w-1/3 flex justify-center items-center">
+        <div className="absolute h-56 w-56 bg-white/10 blur-3xl rounded-full" />
         <img
           src={pokemon.image}
           alt={pokemon.name}
-          className="w-48 h-48 object-contain"
+          className="relative h-56 w-56 object-contain drop-shadow-[0_4px_25px_rgba(255,255,255,0.25)]"
           loading="lazy"
         />
+        <span className="absolute -top-1 -left-1 text-xs font-semibold px-2 py-1 rounded-md bg-yellow-400/90 text-slate-900 shadow">
+          #{pokemon.id}
+        </span>
       </div>
 
       {/* Info */}
-      <div className="w-full md:w-2/3 flex flex-col gap-2">
-        <div className="flex justify-between items-center">
-          <h2 className="text-3xl font-bold capitalize">{pokemon.name}</h2>
-          <span className="text-xl text-white/50 font-semibold">
-            #{pokemon.id}
-          </span>
+      <div className="relative md:w-2/3 flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-4xl font-extrabold capitalize tracking-tight flex flex-wrap gap-3 items-center text-white">
+            {pokemon.name}
+            <span className="flex gap-2">
+              {pokemon.types.map((t) => (
+                <PokeTypeBadge key={t} type={t} />
+              ))}
+            </span>
+          </h1>
+          <p className="text-sm uppercase tracking-wide text-white/50">
+            {pokemon.genus}
+          </p>
         </div>
 
-        <span className="text-sm text-white/80">{pokemon.genus}</span>
-        <p className="italic text-sm leading-snug">{pokemon.description}</p>
-
-        <div className="flex flex-wrap gap-2 mt-2">
-          {pokemon.types.map((t) => (
-            <PokeTypeBadge key={t} type={t} />
-          ))}
-        </div>
+        <p className="text-sm leading-relaxed text-white/80 max-w-prose">
+          {pokemon.description}
+        </p>
 
         {pokemon.cries && (
-          <Button
+          <button
             onClick={() => new Audio(pokemon.cries).play()}
-            className="mt-3 w-fit px-3 py-1 flex items-center gap-2 rounded-full hover:bg-white/20 bg-white/10 text-white"
+            className="group relative inline-flex items-center gap-2 cursor-pointer w-fit mt-2 
+                       rounded-xl bg-gradient-to-r from-indigo-500/70 to-pink-500/70 
+                       px-4 py-2 text-sm font-medium text-white shadow 
+                       hover:from-indigo-500 hover:to-pink-500 transition
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/60"
           >
-            <Volume2 className="w-4 h-4" />
+            <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition">
+              <Volume2 className="w-3 h-3" />
+            </span>
             Cry
-          </Button>
+          </button>
         )}
       </div>
     </div>
   );
 }
+
 export default GlobalDetail;

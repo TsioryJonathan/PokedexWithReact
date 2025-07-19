@@ -3,15 +3,16 @@ import { Button } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import PokeCardDisplayer from "./PokeCardDisplayer";
 import usePokemonList from "@/hooks/usePokemonList";
+import { Loader2 } from "lucide-react";
 
 function PokemonList() {
+  const { pokemonList, loading, error } = usePokemonList();
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
-  const { pokemonList, loading, error } = usePokemonList();
   const count = pokemonList ? Math.ceil(pokemonList.length / itemsPerPage) : 1;
 
-  const savedPage = localStorage.getItem("PokemonPage");
   useEffect(() => {
+    const savedPage = localStorage.getItem("PokemonPage");
     if (savedPage) {
       setPage(Number(savedPage));
     }
@@ -29,7 +30,13 @@ function PokemonList() {
     if (page < count) setPage((prev) => prev + 1);
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="w-screen h-screen flex items-center justify-center flex-col">
+        <Loader2 size={48} className="animate-spin" />
+        <p>Please Wait ... </p>
+      </div>
+    );
   if (error) return <div>Error loading Pokémon data</div>;
 
   return (

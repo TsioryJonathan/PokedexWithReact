@@ -2,16 +2,13 @@ import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import getTypeColor from "@/utils/getTypeColor";
 import getTypeEmoji from "@/utils/getTypeEmoji";
 import { Link } from "react-router-dom";
+import PokemonCardSkeleton from "@/components/PokemonCardSkeleton";
 
 function PokemonCard({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
 
   if (loading || !pokemon) {
-    return (
-      <div className="h-72 w-full flex items-center justify-center bg-gray-100 rounded-xl shadow animate-pulse">
-        <p className="text-gray-400">Loading {pokemonName}...</p>
-      </div>
-    );
+    return <PokemonCardSkeleton />;
   }
 
   if (error) return <div className="text-red-500 text-center">Error</div>;
@@ -19,7 +16,7 @@ function PokemonCard({ pokemonName }) {
   return (
     <Link
       key={pokemon.id}
-      className={`relative to-white rounded-xl shadow-md p-5 text-center border-gray-300 h-fit pb-10 group transition-transform duration-300 ease-in-out ${getTypeColor(
+      className={`min-w-[292px] min-h-[357px] relative to-white rounded-xl shadow-md p-5 text-center border-gray-300 h-fit pb-10 group transition-transform duration-300 ease-in-out ${getTypeColor(
         pokemon.types[0].toLowerCase()
       )} `}
       to={`pokemon/${pokemon.name}`}

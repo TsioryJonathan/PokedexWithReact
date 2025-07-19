@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
-import { Loader2 } from "lucide-react";
+
 import pokemonColors from "@/utils/pokemonColors";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import { FaArrowRight } from "react-icons/fa";
+import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
 
 function EvolutionChain({ pokemonName }) {
   const { evolutionChain, loading, error } =
@@ -33,12 +34,8 @@ function EvolutionChain({ pokemonName }) {
     fetchAllDetails();
   }, [evolutionChain]);
 
-  if (loading)
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        <Loader2 className="animate-spin" size={48} />
-      </div>
-    );
+  if (loading || !pokemon) return <EvolutionChainSkeleton />;
+
   if (error) return <p>Error: {error.message}</p>;
 
   return (

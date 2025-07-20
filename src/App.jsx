@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useRandomPokemon } from "./hooks/useRandomPokemon";
+import { CompareButton } from "./components/compare/CompareButton";
 
 function App() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function App() {
         onToggleTheme={toggleTheme}
         isDark={true}
       />
+      <CompareButton />
       <HeroSection />
       <Home />
     </>

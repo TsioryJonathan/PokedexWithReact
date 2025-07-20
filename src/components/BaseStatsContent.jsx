@@ -2,52 +2,8 @@ import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import pokemonColors from "@/utils/pokemonColors";
-import { FaHeart, FaBolt } from "react-icons/fa";
-import { GiBroadsword, GiShield, GiMagicPalm, GiBrain } from "react-icons/gi";
-
-const STAT_ORDER = [
-  "hp",
-  "attack",
-  "defense",
-  "special-attack",
-  "special-defense",
-  "speed",
-];
-
-const statIcons= {
-  hp: <FaHeart className="text-red-400" />,
-  attack: <GiBroadsword className="text-orange-400" />,
-  defense: <GiShield className="text-yellow-400" />,
-  "special-attack": <GiMagicPalm className="text-purple-400" />,
-  "special-defense": <GiBrain className="text-indigo-400" />,
-  speed: <FaBolt className="text-green-400" />,
-};
-
-const getStatColor = (name) => {
-  switch (name) {
-    case "hp":
-      return "bg-red-500";
-    case "attack":
-      return "bg-orange-500";
-    case "defense":
-      return "bg-yellow-500";
-    case "special-attack":
-      return "bg-purple-500";
-    case "special-defense":
-      return "bg-indigo-500";
-    case "speed":
-      return "bg-green-500";
-    default:
-      return "bg-gray-400";
-  }
-};
-
-const prettyName = (name) =>
-  name
-    .replace("special-", "sp. ")
-    .replace("-", " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-
+import { STAT_ORDER, statIcons, prettyName, getStatColor } from "@/constants/SummaryStats";
+import {SummaryStats} from "./SummaryStats";
 function BaseStatsContent({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
@@ -118,38 +74,7 @@ function BaseStatsContent({ pokemonName }) {
           ))}
         </div>
       </div>
-
-      {/* Summary */}
-      <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 text-sm">
-        <div className="bg-white/10 px-4 py-2 rounded-md backdrop-blur-sm flex items-center gap-2">
-          <span className="font-semibold text-white/70">Average</span>
-          <span
-            className={`font-bold ${
-              average >= 100
-                ? "text-green-300"
-                : average >= 75
-                ? "text-yellow-300"
-                : "text-red-300"
-            }`}
-          >
-            {average}
-          </span>
-        </div>
-        <div className="bg-white/10 px-4 py-2 rounded-md backdrop-blur-sm flex items-center gap-2">
-          <span className="font-semibold text-white/70">Total</span>
-            <span
-              className={`font-bold ${
-                total >= 600
-                  ? "text-green-400"
-                  : total >= 450
-                  ? "text-yellow-300"
-                  : "text-red-300"
-              }`}
-            >
-              {total}
-            </span>
-        </div>
-      </div>
+      <SummaryStats pokemon={pokemon}/>
     </div>
   );
 }

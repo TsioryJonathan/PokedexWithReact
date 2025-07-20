@@ -1,10 +1,10 @@
-import assets from "@/assets/assets";
 import React from "react";
 import { FaDumbbell } from "react-icons/fa";
 import { Badge } from "./ui/badge";
 import { Dot, Ruler } from "lucide-react";
 import PokeTypeBadge from "./PokeTypeBadge";
 import getTypeGradient from "@/utils/getTypeGradient";
+import PokeImage from "./ui/pokeImage";
 
 function PokeCardFront({ pokemon }) {
   return (
@@ -13,18 +13,12 @@ function PokeCardFront({ pokemon }) {
         pokemon.types[0].toLowerCase()
       )} [backface-visibility:hidden]`}
     >
-      <div className="relative w-full aspect-[4/3] flex items-center justify-center rounded-lg overflow-hidden">
-        <img
-          src={assets.bg}
-          alt="Bg Pokeball"
-          className="absolute inset-0 w-full h-full object-cover opacity-30 brightness-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-        />
-        <img
-          src={pokemon.image}
-          alt={pokemon.name}
-          className="relative z-10 max-h-full object-contain transition-all ease-in-out duration-300 group-hover:scale-110"
-        />
-      </div>
+      <PokeImage
+        pokemon={pokemon}
+        className="relative w-full aspect-[4/3] flex items-center justify-center rounded-lg overflow-hidden"
+        imageClassName="relative z-10 max-h-full object-contain transition-all ease-in-out duration-300 group-hover:scale-110"
+        bgClassName="absolute inset-0 w-full h-full object-cover opacity-30 brightness-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+      />
 
       <h1 className="text-2xl font-extrabold capitalize text-white">
         <span className="flex items-center justify-center">

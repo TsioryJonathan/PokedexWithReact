@@ -8,8 +8,8 @@ export const SummaryStats = ({pokemon}) => {
   const average = (total / stats.length).toFixed(1);
 
   return (
-    <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 text-sm">
-      <div className="bg-white/10 px-4 py-2 rounded-md backdrop-blur-sm flex items-center gap-2">
+    <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 text-sm">
+      <div className="bg-white/10 px-2 py-2 rounded-md backdrop-blur-sm flex items-center gap-2">
         <span className="font-semibold text-white/70">Average</span>
         <span
           className={`font-bold ${

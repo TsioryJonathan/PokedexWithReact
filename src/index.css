@@ -312,3 +312,7 @@ body {
     transform: scale(1) rotate(var(--final-rot, -12deg));
   }
 }
+
+.font-quicksand {
+  font-family: "Quicksand", sans-serif;
+}

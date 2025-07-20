@@ -5,7 +5,7 @@ export default function StatComparisonRow({ stat, v }) {
     const pct = Math.min((v / 255) * 100, 100);
     const color = getStatColor(statName);
     return (
-      <div dir={dir} className="w-full h-1 rounded-full bg-gray-400/50 shadow-inner">
+      <div dir={dir} className="w-full h-1 rounded-full bg-gray-400/50">
         <div
           className={`h-full rounded-full ${color} shadow transition-all duration-300`}
           style={{ width: pct + 10 + "%" }}
@@ -15,7 +15,7 @@ export default function StatComparisonRow({ stat, v }) {
   };
 
   return (
-    <div className="flex flex-col gap-1 rounded-lg px-1 py-1 shadow-sm">
+    <div className="flex flex-col gap-1 rounded-lg px-1 py-1">
       <div className="flex items-center justify-between gap-1 text-sm font-semibold">
         <span className="flex items-center gap-1 min-w-[110px]">
           {statIcons[stat]}

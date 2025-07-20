@@ -1,5 +1,4 @@
 import { Ruler, Weight, Sparkles, Egg, BarChart, Globe } from "lucide-react";
-import { prettyName as pretty } from "../components/SumaryStats";
 export function ratioGender(gender_rate) {
   if (gender_rate === -1) return { male: null, female: null };
   const female = (gender_rate / 8) * 100;

@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import FullScreenLoader from "./components/Loader/FullScreenLoader";
-import HeroSection from "./components/HeroSection";
 import { CompareButton } from "./components/compare/CompareButton";
 
 const HeroSection = lazy(() => import("./components/HeroSection"));

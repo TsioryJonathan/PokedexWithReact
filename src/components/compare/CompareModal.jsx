@@ -27,7 +27,7 @@ function CompareModal({ setIsOpen }) {
       onClick={() => setIsOpen(false)}
     >
       <motion.div
-        className="w-[80vw] max-h-[98vh] rounded-2xl border border-white/15 shadow-2xl bg-gradient-to-br from-slate-800/70 via-slate-900/80 to-slate-950/90 flex flex-col overflow-y-auto p-10 "
+        className="w-[90vw] min-h-[95vh] rounded-2xl border border-white/15 shadow-2xl bg-gradient-to-br from-slate-800/70 via-slate-900/80 to-slate-950/90 flex flex-col overflow-y-auto p-10 "
         onClick={(e) => e.stopPropagation()}
         initial={{ y: 48, scale: 0.96, opacity: 0 }}
         animate={{ y: 0, scale: 1, opacity: 1 }}
@@ -40,8 +40,8 @@ function CompareModal({ setIsOpen }) {
         >
           <X size={28} />
         </button>
-        <div className="flex flex-col gap-6">
-          <Compare />
+        <div>
+          <Compare className="w-full"/>
         </div>
       </motion.div>
     </div>

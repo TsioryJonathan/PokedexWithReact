@@ -3,8 +3,9 @@ import { Autocomplete, TextField } from "@mui/material";
 import usePokemonList from "@/hooks/usePokemonList";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import PokemonMiniCard from "./PokemonMiniCard";
+import {MiniCardSkeleton} from "./MiniCardSkeleton";
 
-const Compare = () => {
+const Compare = ({className, ...props}) => {
   const [selectedName1, setSelectedName1] = useState("");
   const [selectedName2, setSelectedName2] = useState("");
   const { pokemonList } = usePokemonList();
@@ -12,7 +13,7 @@ const Compare = () => {
   const { pokemon: p2, loading: l2 } = usePokemonDetails(selectedName2);
   const options = pokemonList.map((p) => p.name);
   return (
-    <div className="max-w-6xl mx-auto p-4 overflow-visible">
+    <div className={`mx-auto p-4 overflow-visible h-[calc(100vh-10rem)] ${className}`} {...props}>
       <h1 className="text-3xl font-bold text-center mb-8">
         Compare two Pokémons
       </h1>
@@ -82,10 +83,10 @@ const Compare = () => {
             />
 
             <div className="mt-4">
-              {l1 || l2 ? (
-                <div className="h-40 w-full rounded-lg !bg-[var(--accent)] animate-pulse"></div>
+              {l1 && l2 ? (
+                <MiniCardSkeleton className="h-[calc(100vh-20rem)]"/>
               ) : (
-                <PokemonMiniCard pokemon={num === 1 ? p1 : p2} />
+                <PokemonMiniCard pokemon={num === 1 ? p1 : p2} className="overflow-hidden h-full"/>
               )}
             </div>
           </div>

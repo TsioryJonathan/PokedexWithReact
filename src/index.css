@@ -260,3 +260,55 @@ body {
     opacity: 1;
   }
 }
+.hero-curve {
+  clip-path: ellipse(140% 100% at 50% 0%);
+}
+
+.hero-curved-bottom {
+  clip-path: ellipse(140% 100% at 50% 0%);
+}
+
+.bg-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+}
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.08);
+  }
+}
+@keyframes flameFlicker {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 4px rgba(255, 200, 80, 0.7));
+  }
+  40% {
+    transform: translateY(-1px) scale(1.05);
+    filter: drop-shadow(0 0 6px rgba(255, 210, 110, 0.9));
+  }
+  70% {
+    transform: translateY(1px) scale(0.97);
+    filter: drop-shadow(0 0 3px rgba(255, 180, 60, 0.5));
+  }
+}
+@keyframes enterBadge {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--final-rot, -12deg));
+  }
+}

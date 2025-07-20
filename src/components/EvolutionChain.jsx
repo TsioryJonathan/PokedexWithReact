@@ -9,14 +9,20 @@ import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
 function EvolutionChain({ pokemonName }) {
   const { evolutionChain, loading, error } =
     usePokemonEvolutionDetails(pokemonName);
-  const { details: evolutionDetails, loading: loadingDetails, error: errorDetails } = useEvolutionChainDetails(evolutionChain);
+  const {
+    details: evolutionDetails,
+    loading: loadingDetails,
+    error: errorDetails,
+  } = useEvolutionChainDetails(evolutionChain);
   const { pokemon } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
+  console.log(evolutionDetails);
 
   if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
 
-  if (error || errorDetails) return <p>Error: {(error?.message || errorDetails?.message)}</p>;
+  if (error || errorDetails)
+    return <p>Error: {error?.message || errorDetails?.message}</p>;
 
   return (
     <div

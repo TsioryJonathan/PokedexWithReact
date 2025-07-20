@@ -3,7 +3,10 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="min-w-screen min-h-screen bg-background px-10 py-10">
+    <div
+      className="min-w-screen min-h-screen bg-gray-950 px-10 py-10"
+      id="pokedex-section"
+    >
       <PokemonList />
     </div>
   );

@@ -1,55 +1,158 @@
+import { useRef } from "react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
+import getTypeAccent from "@/utils/getTypeAccent";
+import PokeTypeBadge from "@/components/PokeTypeBadge";
+import StatCircle from "./StatCircle";
+import TrendingBadge from "./TrendingBadge";
+
+const fade = (delay = 0) => ({
+  initial: { opacity: 0, y: 18 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: "easeOut", delay },
+});
 
 function HeroSlide({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
 
-  if (loading || !pokemon) return null;
-  if (error)
+  // tilt
+  const ref = useRef(null);
+  const mvx = useMotionValue(0);
+  const mvy = useMotionValue(0);
+  const rX = useTransform(mvy, [-55, 55], [12, -12]);
+  const rY = useTransform(mvx, [-55, 55], [-12, 12]);
+
+  const onMove = (e) => {
+    if (!ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    mvx.set(e.clientX - (r.left + r.width / 2));
+    mvy.set(e.clientY - (r.top + r.height / 2));
+  };
+  const onLeave = () => {
+    mvx.set(0);
+    mvy.set(0);
+  };
+
+  if (loading || !pokemon) {
     return (
-      <div className="text-red-500 text-center">Error loading Pokémon</div>
+      <div className="flex items-center justify-center h-[50vh] text-slate-400 text-sm">
+        Loading…
+      </div>
     );
+  }
+  if (error) {
+    return <div className="text-red-500 text-center py-10">Error</div>;
+  }
+
+  const type = pokemon.types[0];
+  const accent = getTypeAccent(type);
+
+  const description =
+    pokemon.description.length > 95
+      ? pokemon.description.slice(0, 92) + "…"
+      : pokemon.description;
+
+  // stats anneaux (hp/attack/defense)
+  const ringStats = pokemon.stats.filter((s) =>
+    ["hp", "attack", "defense"].includes(s.name.toLowerCase())
+  );
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-around gap-10 px-4">
-      <div className="max-w-xl space-y-6 text-center md:text-left">
-        <h1 className="text-4xl font-bold text-gray-900">
-          Welcome to your <span className="italic text-gray-200">Pokédex</span>
-        </h1>
-        <p className="text-gray-800 text-lg">
-          Dive into the incredible world of Pokémon and discover every detail
-          about your favorite creatures. From stats to origins, everything is
-          here.
-        </p>
-        <div className="ml-20">
-          <h2 className="text-3xl font-semibold text-gray-900">
-            Meet{" "}
-            <span className="text-white italic capitalize">
-              {" "}
-              {pokemon.name}
-            </span>
-          </h2>
-          <p className="text-gray-800 italic max-w-lg text-m ml-5 mt-2">
-            {pokemon.description}
-          </p>
-        </div>
-        {/* Optional button:
-        <Link
-          to={`/pokemon/${pokemon.name}`}
-          className="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-semibold rounded hover:brightness-110 transition"
-        >
-          See full details
-        </Link> */}
-        <p className="mt-6 ml-27 text-gray-900 text-xl">
-          And meet many more Pokémon!
-        </p>
-      </div>
+    <div className="relative w-full px-1">
+      <TrendingBadge rotate={0} className="absolute top-[80%] right-0 left-[75%]" />
 
-      <div className="w-full max-w-sm">
-        <img
-          src={pokemon.image}
-          alt={pokemon.name}
-          className="w-full h-auto object-contain drop-shadow-xl"
+      <div
+        className="
+          relative grid md:grid-cols-2 gap-10 items-center
+          bg-slate-900/55 backdrop-blur-xl border border-white/10
+          rounded-2xl p-7 md:p-9 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.65)]
+          overflow-hidden
+        "
+      >
+        {/* Accent wash */}
+        <div
+          className={`pointer-events-none absolute inset-0 opacity-30 bg-gradient-to-br ${accent.grad}`}
         />
+
+        {/* IMAGE SIDE */}
+        <motion.div
+          {...fade(0.05)}
+          className="relative flex items-center justify-center order-1 md:order-none"
+          ref={ref}
+          onMouseMove={onMove}
+          onMouseLeave={onLeave}
+          style={{ rotateX: rX, rotateY: rY }}
+        >
+          {/* layered halos */}
+          <div
+            className={`absolute w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br ${accent.grad} opacity-25 blur-2xl`}
+          />
+          <div className="absolute w-56 h-56 md:w-72 md:h-72 rounded-full bg-slate-950/50 border border-white/10" />
+          <motion.img
+            src={pokemon.image}
+            alt={pokemon.name}
+            draggable="false"
+            className="relative w-56 h-56 md:w-72 md:h-72 object-contain select-none drop-shadow-[0_10px_32px_rgba(0,0,0,0.55)]"
+            whileHover={{ scale: 1.045 }}
+            transition={{ type: "spring", stiffness: 240, damping: 18 }}
+          />
+          <div className="absolute top-2 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/10 border border-white/15 backdrop-blur text-white/70">
+            #{pokemon.id.toString().padStart(4, "0")}
+          </div>
+        </motion.div>
+
+        {/* INFO SIDE */}
+        <motion.div {...fade(0.12)} className="flex flex-col gap-6">
+          {/* Title + types */}
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 className="capitalize text-4xl font-extrabold tracking-tight text-white">
+              {pokemon.name}
+            </h2>
+            <div className="flex gap-2">
+              {pokemon.types.map((t) => (
+                <PokeTypeBadge key={t} type={t} />
+              ))}
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-slate-300/90 text-sm leading-relaxed max-w-md">
+            {description}
+          </p>
+
+          {/* Rings */}
+          <div className="flex gap-6">
+            {ringStats.map((s) => (
+              <StatCircle value={s.value} label={s.name} />
+            ))}
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex gap-3 pt-1">
+            <button
+              className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold
+                         text-slate-900 bg-gradient-to-r from-amber-300 to-amber-500 shadow
+                         hover:brightness-110 transition
+                         focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm"
+            >
+              Profile
+              <span className="transition-transform group-hover:translate-x-1 text-base">
+                →
+              </span>
+            </button>
+            <button
+              onClick={() => {
+                const el = document.getElementById("pokedex-section");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-4 py-2 rounded-md font-medium text-white/85 hover:text-white
+                         border border-white/15 bg-white/5 hover:bg-white/10 transition
+                         focus:outline-none focus:ring-2 focus:ring-white/20 text-sm"
+            >
+              Pokédex
+            </button>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

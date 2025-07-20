@@ -46,7 +46,7 @@ function PokemonList() {
         pokemonList={pokemonList}
       />
 
-      <div className="w-full flex items-center justify-between">
+      <div className="w-4/5 flex items-center justify-between">
         <Button
           className=" text-white hover:bg-primary-dark bg-gray-800/50 text-text cursor-pointer"
           onClick={handlePrevious}

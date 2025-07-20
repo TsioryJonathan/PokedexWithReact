@@ -8,7 +8,7 @@ const PokeCardDisplayer = ({page, pokemonList, itemsPerPage }) => {
   const toShow = pokemonList.slice(startIndex, endIndex);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: window.innerHeight/100, behavior: "smooth" });
   }, [page]);
 
   return (

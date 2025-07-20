@@ -1,6 +1,5 @@
 import getTypeGradient from "@/utils/getTypeGradient";
 import React from "react";
-import { FaBolt } from "react-icons/fa";
 import { PokeStatBadge } from "./PokeStatsBadge";
 
 function PokeCardBack({ pokemon }) {
@@ -22,14 +21,6 @@ function PokeCardBack({ pokemon }) {
       <div className="items-center bottom-0 flex flex-col">
         <div className="mb-5">
           <PokeStatBadge pokeStatData={pokemon.stats} />
-        </div>
-        <div
-          className={`flex items-center gap-2 text-gray-950 px-4 py-2 rounded shadow font-semibold hover:bg-gray-600 transition-colors ${getTypeGradient(
-            pokemon.types[0].toLowerCase()
-          )}`}
-        >
-          <FaBolt size={16} />
-          See more
         </div>
       </div>
     </div>

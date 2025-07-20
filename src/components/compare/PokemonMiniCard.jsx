@@ -1,16 +1,16 @@
 import getTypeGradient from "@/utils/getTypeGradient";
-import PokeTypeBadge from "./PokeTypeBadge";
-import { Skeleton } from "@mui/material";
-import PokeImage from "./ui/pokeImage";
+import PokeTypeBadge from "../PokeTypeBadge";
+import PokeImage from "../ui/pokeImage";
 import StatComparison from "./StatComparison";
-import { SummaryStats } from "./SummaryStats";
+import { SummaryStats } from "../SummaryStats";
+import {MiniCardSkeleton} from "./MiniCardSkeleton";
 
-export default function PokemonMiniCard({ pokemon }) {
+export default function PokemonMiniCard({ pokemon, className }) {
   if (!pokemon)
-    return <Skeleton className="h-40 w-40 rounded-lg !bg-[var(--accent)]" />;
+    return  <MiniCardSkeleton />;
   return (
     <div
-      className={`rounded-lg shadow p-4 text-center ${getTypeGradient(
+      className={`rounded-lg shadow p-4 text-center ${className} ${getTypeGradient(
         pokemon.types[0]?.toLowerCase() || "default"
       )}`}
     >

@@ -1,13 +1,15 @@
-import React from "react";
-import HeroSection from "./components/HeroSection";
-import Home from "./pages/Home";
+import React, { lazy, Suspense } from "react";
+import FullScreenLoader from "./components/Loader/FullScreenLoader";
+
+const HeroSection = lazy(() => import("./components/HeroSection"));
+const Home = lazy(() => import("./components/Home"));
 
 function App() {
   return (
-    <>
-      <HeroSection/>
+    <Suspense fallback={<FullScreenLoader />}>
+      <HeroSection />
       <Home />
-    </>
+    </Suspense>
   );
 }
 

@@ -16,6 +16,7 @@ function PokemonCard({ pokemonName }) {
     <>
       {isOpenModal && (
         <PokeDetailModal
+          isOpen={isOpenModal}
           pokemonName={pokemon.name}
           setIsOpen={setIsOpenModal}
         />

@@ -51,7 +51,7 @@ function HeroSection() {
           modules={[Autoplay, EffectFade]}
           effect="fade"
           fadeEffect={{ crossFade: true }}
-          autoplay={{ delay: 4500, disableOnInteraction: false }}
+          autoplay={{ delay: 4500, disableOnInteraction: true }}
           loop
           speed={650}
           className="w-full"
@@ -68,9 +68,9 @@ function HeroSection() {
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-slate-300 z-20">
         <button
           onClick={scrollToDex}
-          className="flex flex-col items-center group"
+          className="flex flex-col items-center group cursor-pointer"
         >
-          <span className="text-[10px] uppercase tracking-[0.25em] group-hover:text-white transition">
+          <span className="text-[14px] uppercase tracking-[0.25em] group-hover:text-white font-bold transition">
             Scroll to Pokédex
           </span>
           <span className="relative flex flex-col items-center h-8">

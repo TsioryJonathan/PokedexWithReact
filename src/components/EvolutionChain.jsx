@@ -1,58 +1,51 @@
+// components/EvolutionChain.jsx
 import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
 import useEvolutionChainDetails from "@/hooks/useEvolutionChainDetails";
-
-import pokemonColors from "@/utils/pokemonColors";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
-import { FaArrowRight } from "react-icons/fa";
+import pokemonColors from "@/utils/pokemonColors";
 import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
+import { FaArrowRight } from "react-icons/fa";
+import EvolutionMiniCard from "./EvolutionMiniCard";
 
 function EvolutionChain({ pokemonName }) {
   const { evolutionChain, loading, error } =
     usePokemonEvolutionDetails(pokemonName);
+
   const {
     details: evolutionDetails,
     loading: loadingDetails,
     error: errorDetails,
   } = useEvolutionChainDetails(evolutionChain);
+
   const { pokemon } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
-  console.log(evolutionDetails);
-
   if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
-
   if (error || errorDetails)
-    return <p>Error: {error?.message || errorDetails?.message}</p>;
-
+    return (
+      <p className="text-red-500 text-sm">
+        Error: {error?.message || errorDetails?.message}
+      </p>
+    );
   return (
     <div
-      className="flex flex-col gap-4 justify-center mt-4 w-full h-fit px-15 py-5 rounded-lg"
+      className="flex flex-col gap-6 w-full h-fit px-6 py-6 rounded-lg relative overflow-hidden"
       style={{ backgroundColor: bgColor }}
     >
-      <h1 className="text-3xl font-bold">Evolution Chain</h1>
-      <div className="flex items-center gap-8 justify-center px-10 flex-wrap flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-6 flex-wrap justify-center">
         {evolutionDetails.map((poke, index) => (
-          <div
-            key={poke.id}
-            className="flex items-center flex-col md:flex-row gap-8"
-          >
-            <div className="text-center">
-              <img
-                src={poke.sprites.other["official-artwork"].front_default}
-                alt={poke.name}
-                className="w-24 h-24"
-              />
-              <p className="capitalize text-xl font-bold">{poke.name}</p>
-            </div>
-
+          <div key={poke.id} className="flex items-center gap-6 md:gap-4">
+            <EvolutionMiniCard poke={poke} />
             {index < evolutionDetails.length - 1 && (
-              <span className="text-white text-3xl">
-                <FaArrowRight className="rotate-90 md:rotate-0" />
-              </span>
+              <FaArrowRight
+                className="text-white/70 text-2xl md:text-xl rotate-90 md:rotate-0"
+                aria-hidden="true"
+              />
             )}
           </div>
         ))}
       </div>
+      <div className="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_30%_40%,white,transparent_60%)]" />
     </div>
   );
 }

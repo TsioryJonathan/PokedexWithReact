@@ -6,6 +6,7 @@ import "swiper/css/effect-fade";
 
 import HeroSlide from "./HeroSlide";
 import { popularPokemon } from "@/constants/HeroSlide";
+import assets from "@/assets/assets";
 
 function HeroSection() {
   const scrollToDex = () => {
@@ -37,7 +38,7 @@ function HeroSection() {
         "
         >
           <img
-            src="/src/assets/pokemon-logo.png"
+            src={assets.pokemonLogo}
             alt="Pokémon"
             className="h-16 md:h-18 object-cover drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
             draggable="false"

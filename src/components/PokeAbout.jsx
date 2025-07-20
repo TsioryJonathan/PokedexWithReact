@@ -1,11 +1,10 @@
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
-import {
-  Heart,
-  Puzzle,
-  Star,
-} from "lucide-react";
-import { aboutPokemon, ratioGender, InfoRow, MiniStat, Label } from "@/constants/AboutPokemon";
+import { Heart, Puzzle, Star } from "lucide-react";
+import { aboutPokemon, ratioGender } from "@/constants/AboutPokemon";
+import InfoRow from "./InfoRow";
+import MiniStat from "./MiniStat";
+import Label from "./Label";
 import {
   FaMars,
   FaVenus,

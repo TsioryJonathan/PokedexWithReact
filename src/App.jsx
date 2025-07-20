@@ -1,15 +1,18 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
+import FullScreenLoader from "./components/Loader/FullScreenLoader";
 import HeroSection from "./components/HeroSection";
-import Home from "./pages/Home";
 import { CompareButton } from "./components/compare/CompareButton";
+
+const HeroSection = lazy(() => import("./components/HeroSection"));
+const Home = lazy(() => import("./components/Home"));
 
 function App() {
   return (
-    <>
-      <HeroSection/>
-      <CompareButton />
+    <Suspense fallback={<FullScreenLoader />}>
+      <HeroSection />
       <Home />
-    </>
+      <CompareButton />
+    </Suspense>
   );
 }
 

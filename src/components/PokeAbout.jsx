@@ -1,16 +1,11 @@
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import {
-  Ruler,
-  Weight,
-  Globe,
   Heart,
-  Sparkles,
-  Egg,
-  BarChart,
   Puzzle,
   Star,
 } from "lucide-react";
+import { aboutPokemon, ratioGender, InfoRow, MiniStat, Label } from "@/constants/AboutPokemon";
 import {
   FaMars,
   FaVenus,
@@ -20,35 +15,10 @@ import {
   FaDragon,
 } from "react-icons/fa";
 import { Badge } from "./ui/badge";
-
-const pretty = (s) =>
-  s ? s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) : "";
-
-function ratioGender(gender_rate) {
-  if (gender_rate === -1) return { male: null, female: null };
-  const female = (gender_rate / 8) * 100;
-  const male = 100 - female;
-  return { male, female };
-}
-
-function progressColor(statName) {
-  switch (statName) {
-    case "hp":
-      return "bg-red-500";
-    case "attack":
-      return "bg-orange-500";
-    case "defense":
-      return "bg-yellow-500";
-    case "special-attack":
-      return "bg-purple-500";
-    case "special-defense":
-      return "bg-indigo-500";
-    case "speed":
-      return "bg-green-500";
-    default:
-      return "bg-gray-500";
-  }
-}
+import {
+  prettyName as pretty,
+  getStatColor as progressColor,
+} from "@/constants/SummaryStats";
 
 function PokeAbout({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
@@ -102,38 +72,14 @@ function PokeAbout({ pokemonName }) {
       <div className="grid md:grid-cols-2 gap-6">
         {/* Colonne 1 */}
         <div className="space-y-4">
-          <InfoRow
-            icon={<Ruler />}
-            label="Height"
-            value={`${pokemon.height / 10} m`}
-          />
-          <InfoRow
-            icon={<Weight />}
-            label="Weight"
-            value={`${pokemon.weight / 10} kg`}
-          />
-          <InfoRow
-            icon={<Sparkles className="text-yellow-300" />}
-            label="Abilities"
-            value={pokemon.abilities
-              .map((a) => `${a.name}${a.is_hidden ? " (Hidden)" : ""}`)
-              .join(", ")}
-          />
-          <InfoRow
-            icon={<Egg />}
-            label="Egg Groups"
-            value={pokemon.egg_groups.map(pretty).join(", ")}
-          />
-          <InfoRow
-            icon={<BarChart />}
-            label="Growth Rate"
-            value={pretty(pokemon.growth_rate)}
-          />
-          <InfoRow
-            icon={<Globe />}
-            label="Habitat"
-            value={pretty(pokemon.habitat)}
-          />
+          {aboutPokemon(pokemon).map((item) => (
+            <InfoRow
+              key={item.label}
+              icon={item.icon}
+              label={item.label}
+              value={item.value}
+            />
+          ))}
         </div>
 
         <div className="space-y-6">
@@ -250,36 +196,5 @@ function PokeAbout({ pokemonName }) {
     </div>
   );
 }
-
-const InfoRow = ({ icon, label, value }) => (
-  <div className="flex items-start gap-3">
-    <div className="p-2 rounded-md bg-white/10 flex items-center justify-center">
-      {icon}
-    </div>
-    <div className="flex-1">
-      <p className="text-xs uppercase tracking-wide text-white/60">{label}</p>
-      <p className="font-semibold capitalize text-sm">{value || "—"}</p>
-    </div>
-  </div>
-);
-
-const MiniStat = ({ label, value, hint }) => (
-  <div className="bg-white/10 rounded p-2 flex flex-col">
-    <span className="text-[14px] font-bold uppercase tracking-wide text-white">
-      {label}
-    </span>
-    <span className="text-sm font-semibold text-white/50">{value ?? "—"}</span>
-    {hint && <span className="text-[10px] text-white/40">{hint}</span>}
-  </div>
-);
-
-const Label = ({ icon, text }) => (
-  <div className="flex items-center gap-2 font-semibold">
-    <span className="p-1 bg-white/10 rounded">{icon}</span>
-    <span className="text-sm uppercase tracking-wide text-white/70">
-      {text}
-    </span>
-  </div>
-);
 
 export default PokeAbout;

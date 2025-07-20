@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
+import useEvolutionChainDetails from "@/hooks/useEvolutionChainDetails";
 
 import pokemonColors from "@/utils/pokemonColors";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
@@ -9,34 +9,14 @@ import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
 function EvolutionChain({ pokemonName }) {
   const { evolutionChain, loading, error } =
     usePokemonEvolutionDetails(pokemonName);
-  const [evolutionDetails, setEvolutionDetails] = useState([]);
+  const { details: evolutionDetails, loading: loadingDetails, error: errorDetails } = useEvolutionChainDetails(evolutionChain);
   const { pokemon } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
-  useEffect(() => {
-    const fetchAllDetails = async () => {
-      if (!evolutionChain || evolutionChain.length === 0) return;
 
-      try {
-        const responses = await Promise.all(
-          evolutionChain.map((name) =>
-            fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then((res) =>
-              res.json()
-            )
-          )
-        );
-        setEvolutionDetails(responses);
-      } catch (err) {
-        console.error("Erreur lors de la récupération des détails :", err);
-      }
-    };
+  if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
 
-    fetchAllDetails();
-  }, [evolutionChain]);
-
-  if (loading || !pokemon) return <EvolutionChainSkeleton />;
-
-  if (error) return <p>Error: {error.message}</p>;
+  if (error || errorDetails) return <p>Error: {(error?.message || errorDetails?.message)}</p>;
 
   return (
     <div

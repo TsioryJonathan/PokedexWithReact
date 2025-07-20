@@ -25,7 +25,6 @@ function PokemonList() {
   const handlePrevious = () => {
     if (page > 1) setPage((prev) => prev - 1);
   };
-
   const handleNext = () => {
     if (page < count) setPage((prev) => prev + 1);
   };
@@ -47,7 +46,7 @@ function PokemonList() {
         pokemonList={pokemonList}
       />
 
-      <div className="flex items-center justify-center gap-8">
+      <div className="w-full flex items-center justify-between">
         <Button
           className=" text-white hover:bg-primary-dark bg-gray-800/50 text-text cursor-pointer"
           onClick={handlePrevious}

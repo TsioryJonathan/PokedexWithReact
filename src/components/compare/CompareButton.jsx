@@ -8,7 +8,7 @@ export const CompareButton = (props) => {
 
   return (
     <>
-      {isOpenModal && <CompareModal setIsOpen={setIsOpenModal} />}
+      {isOpenModal && <CompareModal open={isOpenModal} onClose={() => setIsOpenModal(false)} />}
 
       <div
         style={{

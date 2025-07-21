@@ -18,7 +18,7 @@ export default function EvolutionMiniCard({ poke, evolutionHint }) {
   return (
     <>
       {open && (
-        <PokeDetailModal pokemonName={name} setIsOpen={setOpen} isOpen={open} />
+        <PokeDetailModal pokemonName={name} open={open} onClose={() => setOpen(false)} />
       )}
 
       <button

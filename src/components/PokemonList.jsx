@@ -4,12 +4,16 @@ import PokeCardDisplayer from "./PokeCardDisplayer";
 import usePokemonList from "@/hooks/usePokemonList";
 import { Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
+import SearchInput from "./SearchInput";
+import PokedexLogo from "./PokedexLogo";
+import PokeBallLogo from "./PokeBallLogo";
 
 function PokemonList() {
   const { pokemonList, loading, error } = usePokemonList();
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
   const count = pokemonList ? Math.ceil(pokemonList.length / itemsPerPage) : 1;
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const savedPage = localStorage.getItem("PokemonPage");
@@ -40,10 +44,15 @@ function PokemonList() {
 
   return (
     <div className="flex flex-col items-center gap-8">
+      <div className="flex gap-5 items-center justify-center">
+        <PokeBallLogo className={" w-20 h-20 object-cover"} />
+        <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      </div>
       <PokeCardDisplayer
         page={page}
         itemsPerPage={itemsPerPage}
         pokemonList={pokemonList}
+        searchTerm={searchTerm}
       />
 
       <div className="w-4/5 flex items-center justify-between">

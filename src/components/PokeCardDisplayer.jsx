@@ -1,13 +1,20 @@
 import React, { useEffect, useRef } from "react";
 import PokemonCard from "./PokemonCard.jsx";
+import PokedexLogo from "./PokedexLogo.jsx";
 
-const PokeCardDisplayer = ({ page, pokemonList, itemsPerPage }) => {
+const PokeCardDisplayer = ({ page, pokemonList, itemsPerPage, searchTerm }) => {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const toShow = pokemonList.slice(startIndex, endIndex);
   const containerRef = useRef(null);
   const isFirstRender = useRef(true);
-  
+  let filtered = [];
+  if (searchTerm) {
+    filtered = pokemonList.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -27,9 +34,14 @@ const PokeCardDisplayer = ({ page, pokemonList, itemsPerPage }) => {
       id="pokemon-list"
       ref={containerRef}
     >
-      {toShow.map((pokemon, i) => (
-        <PokemonCard pokemonName={pokemon.name} key={i} />
-      ))}
+      
+      {filtered.length > 0
+        ? filtered.map((pokemon, i) => (
+            <PokemonCard pokemonName={pokemon.name} key={i} />
+          ))
+        : toShow.map((pokemon, i) => (
+            <PokemonCard pokemonName={pokemon.name} key={i} />
+          ))}
     </section>
   );
 };

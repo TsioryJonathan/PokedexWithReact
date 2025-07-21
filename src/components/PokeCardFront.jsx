@@ -5,6 +5,7 @@ import { Dot, Ruler } from "lucide-react";
 import PokeTypeBadge from "./PokeTypeBadge";
 import getTypeGradient from "@/utils/getTypeGradient";
 import PokeImage from "./ui/pokeImage";
+import FavoriteButton from "./favorite/FavoriteButton";
 
 function PokeCardFront({ pokemon }) {
   return (
@@ -13,6 +14,7 @@ function PokeCardFront({ pokemon }) {
         pokemon.types[0].toLowerCase()
       )} [backface-visibility:hidden]`}
     >
+      <FavoriteButton pokemonName={pokemon.name} />
       <PokeImage
         pokemon={pokemon}
         className="relative w-full aspect-[4/3] flex items-center justify-center rounded-lg overflow-hidden"

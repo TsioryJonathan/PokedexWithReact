@@ -16,13 +16,13 @@ function PokemonCard({ pokemonName }) {
     <>
       {isOpenModal && (
         <PokeDetailModal
-          isOpen={isOpenModal}
+          open={isOpenModal}
           pokemonName={pokemon.name}
-          setIsOpen={setIsOpenModal}
+          onClose={() => setIsOpenModal(false)}
         />
       )}
 
-      <button
+      <div
         onClick={() => setIsOpenModal(true)}
         className="group [perspective:1500px] min-w-[292px] min-h-[410px] w-[350px] md:w-[290px] cursor-pointer"
       >
@@ -33,7 +33,7 @@ function PokemonCard({ pokemonName }) {
           {/* BACK */}
           <PokeCardBack pokemon={pokemon} />
         </div>
-      </button>
+      </div>
     </>
   );
 }

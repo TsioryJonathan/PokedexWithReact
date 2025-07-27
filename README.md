@@ -21,12 +21,12 @@
 ## 📸 Showcase
 
 <div align="center">
-  <img src="./public/hero.PNG" alt="Hero Section" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="./public/pokedex.PNG" alt="Pokédex Section" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="./public/details.PNG" alt="Detail Modal" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="./public/compare.PNG" alt="Compare Pokémon" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="./public/favorite.PNG" alt="Favorites" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="./public/research.PNG" alt="Search" width="300" style="border-radius:8px; margin:8px;" />
+  <img src="./public/hero.png" alt="Hero Section" width="300" style="border-radius:8px; margin:8px;" />
+  <img src="./public/pokedex.png" alt="Pokédex Section" width="300" style="border-radius:8px; margin:8px;" />
+  <img src="./public/details.png" alt="Detail Modal" width="300" style="border-radius:8px; margin:8px;" />
+  <img src="./public/compare.png" alt="Compare Pokémon" width="300" style="border-radius:8px; margin:8px;" />
+  <img src="./public/favorite.png" alt="Favorites" width="300" style="border-radius:8px; margin:8px;" />
+  <img src="./public/research.png" alt="Search" width="300" style="border-radius:8px; margin:8px;" />
 </div>
 
 ---

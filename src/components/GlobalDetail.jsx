@@ -4,7 +4,7 @@ import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
 import PokeTypeBadge from "@/components/PokeTypeBadge";
-import CryButton from "./ui/cryButton";
+import CryButton from "./ui/CryButton";
 import { Crown, Star, Heart, Share2 } from "lucide-react";
 
 const fadeIn = (delay = 0) => ({

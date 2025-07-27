@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import PokeDetailModal from "./PokeDetailModal";
 import Portal from "./Portal";
 import { ArrowRight } from "lucide-react";
-import CryButton from "./ui/cryButton";
+import CryButton from "./ui/CryButton";
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },

@@ -20,14 +20,14 @@
 
 ## 📸 Showcase
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/hero.PNG" alt="Hero Section" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/pokedex.PNG" alt="Pokédex Section" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/details.PNG" alt="Detail Modal" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/compare.PNG" alt="Compare Pokémon" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/favorite.PNG" alt="Favorites" width="300" style="border-radius:8px; margin:8px;" />
-  <img src="https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/research.PNG" alt="Search" width="300" style="border-radius:8px; margin:8px;" />
-</div>
+<!-- Showcase -->
+
+![Hero Section](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/hero.PNG)
+![Pokédex Section](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/pokedex.PNG)
+![Detail Modal](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/details.PNG)
+![Compare Pokémon](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/compare.PNG)
+![Favorites](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/favorite.PNG)
+![Search](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/research.PNG)
 
 ---
 

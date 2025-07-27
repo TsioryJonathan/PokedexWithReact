@@ -61,14 +61,17 @@ function HeroSlide({ pokemonName }) {
     ["hp", "attack", "defense"].includes(s.name.toLowerCase())
   );
 
+  const handleClose = () => setIsOpen(false);
+
   return (
     <>
       {isOpen && (
         <Portal>
           <PokeDetailModal
             pokemonName={pokemonName}
-            isOpen={isOpen}
+            open={isOpen}
             setIsOpen={setIsOpen}
+            onClose={handleClose}
           />
         </Portal>
       )}

@@ -8,7 +8,7 @@ import TrendingBadge from "./TrendingBadge";
 import { Button } from "./ui/button";
 import PokeDetailModal from "./PokeDetailModal";
 import Portal from "./Portal";
-import { ArrowRight, Volume2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import CryButton from "./ui/cryButton";
 
 const fade = (delay = 0) => ({
@@ -17,7 +17,7 @@ const fade = (delay = 0) => ({
   transition: { duration: 0.5, ease: "easeOut", delay },
 });
 
-function HeroSlide({ pokemonName }) {
+export default function HeroSlide({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -60,6 +60,9 @@ function HeroSlide({ pokemonName }) {
     ["hp", "attack", "defense"].includes(s.name.toLowerCase())
   );
 
+  const isLegendary = pokemon.is_legendary;
+  const isMythical = pokemon.is_mythical;
+
   const handleClose = () => setIsOpen(false);
 
   return (
@@ -75,9 +78,22 @@ function HeroSlide({ pokemonName }) {
         </Portal>
       )}
       <div className="relative w-full px-1">
-        <div className="absolute top-5 left-5 z-999">
+        <div className="absolute top-5 left-5 z-10">
           <CryButton pokemon={pokemon} />
         </div>
+        {(isLegendary || isMythical) && (
+          <div
+            className={
+              `absolute top-5 right-5 px-3 py-1 rounded-full text-xs font-bold uppercase z-10 ` +
+              (isLegendary
+                ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-slate-900"
+                : "bg-gradient-to-r from-pink-400 to-pink-600 text-white")
+            }
+          >
+            {isLegendary ? "Legendary" : "Mythical"}
+          </div>
+        )}
+        {/* Trending badge */}
         <TrendingBadge
           rotate={0}
           className="absolute top-[80%] right-0 left-[75%]"
@@ -160,5 +176,3 @@ function HeroSlide({ pokemonName }) {
     </>
   );
 }
-
-export default HeroSlide;

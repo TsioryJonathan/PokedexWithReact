@@ -1,67 +1,98 @@
-// GlobalDetail.jsx
+import React from "react";
+import { motion } from "framer-motion";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
-import PokeTypeBadge from "./PokeTypeBadge";
-import { Volume2 } from "lucide-react";
+import PokeTypeBadge from "@/components/PokeTypeBadge";
 import CryButton from "./ui/cryButton";
+import { Crown, Star, Heart, Share2 } from "lucide-react";
 
-function GlobalDetail({ name }) {
+const fadeIn = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: "easeOut", delay },
+});
+
+export default function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
-
   if (loading) return <GlobalDetailSkeleton />;
-  if (error || !pokemon) return <p className="text-red-500">Error loading.</p>;
+  if (error || !pokemon)
+    return <p className="text-red-500 text-center py-4">Error loading.</p>;
 
-  const base = pokemonColors[pokemon.color] || pokemonColors.default;
+  const baseColor = pokemonColors[pokemon.color] || pokemonColors.default;
+  const isLegendary = pokemon.is_legendary;
+  const isMythical = pokemon.is_mythical;
 
   return (
-    <div className="relative flex flex-col md:flex-row gap-6 p-6 md:p-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-80"
-        style={{
-          background: `linear-gradient(135deg, ${base} 0%, #0f1115 100%)`,
-        }}
-      />
-      <div className="absolute inset-0 mix-blend-overlay bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.18),transparent_60%)]" />
+    <motion.div
+      className="relative flex flex-col md:flex-row gap-6 p-6 md:p-8 rounded-2xl border border-white/10 bg-opacity-10 overflow-hidden"
+      style={{ backgroundColor: baseColor }}
+      {...fadeIn(0)}
+    >
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 mix-blend-overlay bg-gradient-to-br from-white/10 to-black/50 rounded-2xl" />
+
+      {/* Legendary/Mythical badge */}
+      {(isLegendary || isMythical) && (
+        <motion.div
+          className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 rounded-full shadow-lg bg-gradient-to-br from-amber-400 to-yellow-200/40"
+          {...fadeIn(0.3)}
+        >
+          {isLegendary ? (
+            <Crown className="w-5 h-5 text-yellow-300 animate-pulse" />
+          ) : (
+            <Star className="w-5 h-5 text-pink-300 animate-pulse" />
+          )}
+          <span className="text-xs font-bold uppercase text-white tracking-wider">
+            {isLegendary ? "Legendary" : "Mythical"}
+          </span>
+        </motion.div>
+      )}
 
       {/* Pokémon Image */}
-      <div className="relative md:w-1/3 flex justify-center items-center">
-        <div className="absolute h-56 w-56 bg-white/10 blur-3xl rounded-full" />
+      <motion.div
+        className="relative md:w-1/3 flex justify-center items-center"
+        {...fadeIn(0.2)}
+      >
+        <div className="absolute h-60 w-60 bg-white/20 blur-2xl rounded-full" />
         <img
           src={pokemon.image}
           alt={pokemon.name}
-          className="relative h-56 w-56 object-contain drop-shadow-[0_4px_25px_rgba(255,255,255,0.25)]"
+          className="relative h-60 w-60 object-contain drop-shadow-lg"
           loading="lazy"
         />
-        <span className="absolute -top-1 -left-1 text-xs font-semibold px-2 py-1 rounded-md bg-yellow-400/90 text-slate-900 shadow">
-          #{pokemon.id}
+        <span className="absolute -top-2 -left-2 text-sm font-bold px-2 py-1 rounded-md bg-white/90 text-slate-900">
+          #{String(pokemon.id).padStart(3, "0")}
         </span>
-      </div>
+      </motion.div>
 
-      {/* Info */}
-      <div className="relative md:w-2/3 flex flex-col gap-3">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-4xl font-extrabold capitalize tracking-tight flex flex-wrap gap-3 items-center text-white">
+      {/* Info section */}
+      <div className="relative md:w-2/3 flex flex-col gap-4">
+        <motion.div {...fadeIn(0.4)}>
+          <h1 className="text-4xl font-extrabold capitalize tracking-tight text-white flex items-center gap-3">
             {pokemon.name}
-            <span className="flex gap-2">
+            <div className="flex gap-2">
               {pokemon.types.map((t) => (
                 <PokeTypeBadge key={t} type={t} />
               ))}
-            </span>
+            </div>
           </h1>
-          <p className="text-sm uppercase tracking-wide text-white/50">
+          <p className="text-sm uppercase tracking-wide text-white/60">
             {pokemon.genus}
           </p>
-        </div>
+        </motion.div>
 
-        <p className="text-sm leading-relaxed text-white/80 max-w-prose">
+        <motion.p
+          className="text-sm leading-relaxed text-white/80 max-w-prose"
+          {...fadeIn(0.5)}
+        >
           {pokemon.description}
-        </p>
+        </motion.p>
 
-        {pokemon.cries && <CryButton pokemon={pokemon} />}
+        <motion.div className="flex items-center gap-4 mt-4" {...fadeIn(0.6)}>
+          {pokemon.cries && <CryButton pokemon={pokemon} />}
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
-
-export default GlobalDetail;

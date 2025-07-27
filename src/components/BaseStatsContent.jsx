@@ -1,10 +1,24 @@
+import React from "react";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import pokemonColors from "@/utils/pokemonColors";
-import { STAT_ORDER, statIcons, prettyName, getStatColor } from "@/constants/SummaryStats";
-import {SummaryStats} from "./SummaryStats";
-function BaseStatsContent({ pokemonName }) {
+import {
+  STAT_ORDER,
+  statIcons,
+  prettyName,
+  getStatColor,
+} from "@/constants/SummaryStats";
+import { SummaryStats } from "./SummaryStats";
+import StatCircle from "./StatCircle";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0 },
+};
+
+export default function BaseStatsContent({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
@@ -15,68 +29,81 @@ function BaseStatsContent({ pokemonName }) {
       </div>
     );
   }
-
   if (error || !pokemon) {
     return <p className="text-red-500 text-center">Error: {error}</p>;
   }
 
-  // Réordonner & filtrer
+  // Prepare stats
   const stats = STAT_ORDER.map((key) =>
     pokemon.stats.find((s) => s.name === key)
   ).filter(Boolean);
-
   const total = stats.reduce((acc, s) => acc + s.value, 0);
   const average = (total / stats.length).toFixed(1);
 
-  // Split en 2 colonnes égales
-  const left = stats.slice(0, 3);
-  const right = stats.slice(3);
-
-  const StatBlock = ({ stat }) => {
-    const percent = Math.min((stat.value / 255) * 100, 100);
-    return (
-      <div className="space-y-1">
-        <div className="flex justify-between items-center text-white">
-          <span className="flex items-center gap-2 font-semibold text-xs uppercase tracking-wide">
-            {statIcons[stat.name]}
-            {prettyName(stat.name)}
-          </span>
-          <span className="font-mono text-sm">{stat.value}</span>
-        </div>
-        <div className="w-full h-2.5 bg-white/10 rounded overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: `${percent}%` }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
-            className={`h-full ${getStatColor(stat.name)}`}
-          />
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <div
-      className="w-full px-6 md:px-10 py-6 rounded-lg text-white"
-      style={{ backgroundColor: bgColor }}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Colonne gauche */}
-        <div className="flex flex-col gap-4">
-          {left.map((stat) => (
-            <StatBlock key={stat.name} stat={stat} />
+    <Card style={{ backgroundColor: bgColor }} className="text-white">
+      <CardHeader className="mb-4">
+        <CardTitle className="flex items-center justify-between">
+          <span>Base Stats</span>
+          <span className="flex gap-4 text-sm font-mono">
+            <b>Total:</b> {total} | <b>Avg:</b> {average}
+          </span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {/* Circle overview */}
+        <motion.div
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+          initial="hidden"
+          animate="show"
+          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+        >
+          {stats.map((stat) => (
+            <motion.div key={stat.name} variants={fadeUp}>
+              <StatCircle value={stat.value} label={prettyName(stat.name)} />
+            </motion.div>
           ))}
-        </div>
-        {/* Colonne droite */}
-        <div className="flex flex-col gap-4">
-          {right.map((stat) => (
-            <StatBlock key={stat.name} stat={stat} />
-          ))}
-        </div>
-      </div>
-      <SummaryStats pokemon={pokemon}/>
-    </div>
+        </motion.div>
+
+        {/* Horizontal bars */}
+        <motion.div
+          className="space-y-4"
+          initial="hidden"
+          animate="show"
+          variants={{ show: { transition: { staggerChildren: 0.08 } } }}
+        >
+          {stats.map((stat) => {
+            const percent = Math.min((stat.value / 255) * 100, 100);
+            const colorClass = getStatColor(stat.name);
+            return (
+              <motion.div
+                key={stat.name}
+                className="flex flex-col"
+                variants={fadeUp}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <div className="flex items-center gap-2 font-semibold uppercase text-xs">
+                    {statIcons[stat.name]}
+                    {prettyName(stat.name)}
+                  </div>
+                  <div className="font-mono text-sm">{stat.value}</div>
+                </div>
+                <div className="w-full h-3 bg-white/20 rounded overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${percent}%` }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    className={`h-full ${colorClass}`}
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Summary and extra */}
+        <SummaryStats pokemon={pokemon} />
+      </CardContent>
+    </Card>
   );
 }
-
-export default BaseStatsContent;

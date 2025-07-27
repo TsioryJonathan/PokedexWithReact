@@ -7,6 +7,7 @@ import "swiper/css/effect-fade";
 import HeroSlide from "./HeroSlide";
 import { popularPokemon } from "@/constants/HeroSlide";
 import assets from "@/assets/assets";
+import ScrollToDexButton from "./ui/ScrollToDex";
 
 function HeroSection() {
   const scrollToDex = () => {
@@ -66,23 +67,7 @@ function HeroSection() {
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-slate-300 z-20">
-        <button
-          onClick={scrollToDex}
-          className="flex flex-col items-center group cursor-pointer"
-        >
-          <span className="text-[14px] uppercase tracking-[0.25em] group-hover:text-white font-bold transition">
-            Scroll to Pokédex
-          </span>
-          <span className="relative flex flex-col items-center h-8">
-            <span className="w-px h-5 bg-slate-500/40 group-hover:bg-slate-300 transition" />
-            <span
-              className="mt-1 w-3 h-3 border-b-2 border-r-2 border-slate-400 rotate-45
-                         animate-[bounce_1.4s_infinite] group-hover:border-white"
-            />
-          </span>
-        </button>
-      </div>
+      <ScrollToDexButton />
 
       {/* Bottom divider accent */}
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />

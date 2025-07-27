@@ -76,7 +76,7 @@ function PokemonList() {
           {pages.map((num) => (
             <Button
               key={num}
-              className={`text-white px-3 py-2 rounded cursor-pointer ${
+              className={`text-white px-3 py-2 rounded cursor-pointer hover:bg-gray-500 ${
                 page === num ? "bg-amber-500" : "bg-gray-800/50"
               }`}
               onClick={() => setPage(num)}

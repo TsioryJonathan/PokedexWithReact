@@ -8,6 +8,8 @@ import TrendingBadge from "./TrendingBadge";
 import { Button } from "./ui/button";
 import PokeDetailModal from "./PokeDetailModal";
 import Portal from "./Portal";
+import { ArrowRight, Volume2 } from "lucide-react";
+import CryButton from "./ui/cryButton";
 
 const fade = (delay = 0) => ({
   initial: { opacity: 0, y: 18 },
@@ -50,13 +52,10 @@ function HeroSlide({ pokemonName }) {
 
   const type = pokemon.types[0];
   const accent = getTypeAccent(type);
-
   const description =
     pokemon.description.length > 95
       ? pokemon.description.slice(0, 92) + "…"
       : pokemon.description;
-
-  // stats anneaux (hp/attack/defense)
   const ringStats = pokemon.stats.filter((s) =>
     ["hp", "attack", "defense"].includes(s.name.toLowerCase())
   );
@@ -76,6 +75,9 @@ function HeroSlide({ pokemonName }) {
         </Portal>
       )}
       <div className="relative w-full px-1">
+        <div className="absolute top-5 left-5 z-999">
+          <CryButton pokemon={pokemon} />
+        </div>
         <TrendingBadge
           rotate={0}
           className="absolute top-[80%] right-0 left-[75%]"
@@ -83,11 +85,11 @@ function HeroSlide({ pokemonName }) {
 
         <div
           className="
-          relative grid md:grid-cols-2 gap-10 items-center
-          bg-slate-900/55 backdrop-blur-xl border border-white/10
-          rounded-2xl p-7 md:p-9 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.65)]
-          overflow-hidden
-        "
+            relative grid md:grid-cols-2 gap-10 items-center
+            bg-slate-900/55 backdrop-blur-xl border border-white/10
+            rounded-2xl p-7 md:p-9 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.65)]
+            overflow-hidden
+          "
         >
           <div
             className={`pointer-events-none absolute inset-0 opacity-30 bg-gradient-to-br ${accent.grad}`}
@@ -136,34 +138,20 @@ function HeroSlide({ pokemonName }) {
 
             <div className="flex gap-6">
               {ringStats.map((s) => (
-                <StatCircle value={s.value} label={s.name} />
+                <StatCircle key={s.name} value={s.value} label={s.name} />
               ))}
             </div>
 
             {/* CTA Buttons */}
             <div className="flex gap-3 pt-1">
               <Button
-                className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold
-                         text-slate-900 bg-gradient-to-r from-amber-300 to-amber-500 shadow
-                         hover:brightness-110 transition
-                         focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm cursor-pointer"
+                className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold text-slate-900 bg-gradient-to-r from-amber-400 to-amber-500 shadow hover:brightness-110 transition focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm cursor-pointer"
                 onClick={() => setIsOpen(true)}
               >
-                Profile
+                View Profile
                 <span className="transition-transform group-hover:translate-x-1 text-base">
-                  →
+                  <ArrowRight className="w-4 h-4" />
                 </span>
-              </Button>
-              <Button
-                onClick={() => {
-                  const el = document.getElementById("pokedex-section");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="px-4 py-2 rounded-md font-medium text-white/85 hover:text-white
-                         border border-white/15 bg-white/5 hover:bg-white/10 transition
-                         focus:outline-none focus:ring-2 focus:ring-white/20 text-sm cursor-pointer"
-              >
-                Pokédex
               </Button>
             </div>
           </motion.div>

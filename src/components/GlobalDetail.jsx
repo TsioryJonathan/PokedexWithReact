@@ -4,6 +4,7 @@ import pokemonColors from "@/utils/pokemonColors";
 import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
 import PokeTypeBadge from "./PokeTypeBadge";
 import { Volume2 } from "lucide-react";
+import CryButton from "./ui/cryButton";
 
 function GlobalDetail({ name }) {
   const { pokemon, loading, error } = usePokemonDetails(name);
@@ -15,7 +16,6 @@ function GlobalDetail({ name }) {
 
   return (
     <div className="relative flex flex-col md:flex-row gap-6 p-6 md:p-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-    
       <div
         className="absolute inset-0 opacity-80"
         style={{
@@ -58,21 +58,7 @@ function GlobalDetail({ name }) {
           {pokemon.description}
         </p>
 
-        {pokemon.cries && (
-          <button
-            onClick={() => new Audio(pokemon.cries).play()}
-            className="group relative inline-flex items-center gap-2 cursor-pointer w-fit mt-2 
-                       rounded-xl bg-gradient-to-r from-indigo-500/70 to-pink-500/70 
-                       px-4 py-2 text-sm font-medium text-white shadow 
-                       hover:from-indigo-500 hover:to-pink-500 transition
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/60"
-          >
-            <span className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition">
-              <Volume2 className="w-3 h-3" />
-            </span>
-            Cry
-          </button>
-        )}
+        {pokemon.cries && <CryButton pokemon={pokemon} />}
       </div>
     </div>
   );

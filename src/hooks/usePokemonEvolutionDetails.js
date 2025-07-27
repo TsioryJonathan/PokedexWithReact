@@ -6,7 +6,6 @@ function usePokemonEvolutionDetails(name) {
   const [evolutionChain, setEvolutionChain] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     if (!name) return;
 

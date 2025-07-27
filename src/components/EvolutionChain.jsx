@@ -8,8 +8,9 @@ import { FaArrowRight } from "react-icons/fa";
 import EvolutionMiniCard from "./EvolutionMiniCard";
 
 function EvolutionChain({ pokemonName }) {
-  const { evolutionChain, loading, error } =
-    usePokemonEvolutionDetails(pokemonName);
+  const { evolutionChain, loading, error } = usePokemonEvolutionDetails(
+    pokemonName.split("-")[0]
+  );
 
   const {
     details: evolutionDetails,
@@ -23,8 +24,8 @@ function EvolutionChain({ pokemonName }) {
   if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
   if (error || errorDetails)
     return (
-      <p className="text-red-500 text-sm">
-        Error: {error?.message || errorDetails?.message}
+      <p className="text-red-500 text-lg">
+        There was an error loading the evolution chain.
       </p>
     );
   return (

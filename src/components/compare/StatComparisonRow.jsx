@@ -1,11 +1,13 @@
 import { getStatColor, statIcons, prettyName } from "@/constants/SummaryStats";
 
 export default function StatComparisonRow({ stat, v }) {
+const isDark = typeof document !== "undefined" && document.body.classList.contains("dark");
+
   const renderBar = (v, statName, dir) => {
     const pct = Math.min((v / 255) * 100, 100);
     const color = getStatColor(statName);
     return (
-      <div dir={dir} className="w-full h-1 rounded-full bg-gray-400/50">
+      <div dir={dir} className="w-full h-1 rounded-full stat-bar-bg">
         <div
           className={`h-full rounded-full ${color} shadow transition-all duration-300`}
           style={{ width: pct + 10 + "%" }}
@@ -23,7 +25,7 @@ export default function StatComparisonRow({ stat, v }) {
             {prettyName(stat)}
           </span>
         </span>
-        <span className="font-mono text-sm text-green-400">{v}</span>
+        <span className={`font-mono text-sm ${isDark ? "text-green-400" : "text-green-800"}`}>{v}</span>
       </div>
       {renderBar(v, stat, "ltr")}
     </div>

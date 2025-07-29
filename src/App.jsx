@@ -6,7 +6,6 @@ import FavoriteModalButton from "./components/favorite/FavoriteModalButton";
 import { ToastProvider } from "./components/ui/ToastContext";
 import NetworkStatusNotifier from "./components/ui/NetworkStatusNotifier";
 import ThemeToggle from "./components/ThemeToggle";
-import BackgroundImage from "./components/BackgroundImage";
 
 const HeroSection = lazy(() => import("./components/HeroSection"));
 const Home = lazy(() => import("./components/Home"));
@@ -17,16 +16,11 @@ function App() {
       <NetworkStatusNotifier />
       <FavoritesProvider>
         <Suspense fallback={<FullScreenLoader />}>
-          <div className="relative min-h-screen">
-            <BackgroundImage />
-            <main className="relative z-10">
-              <HeroSection />
-              <Home />
-              <CompareButton />
-              <ThemeToggle />
-              <FavoriteModalButton />
-            </main>
-          </div>
+          <HeroSection />
+          <Home />
+          <CompareButton />
+          <ThemeToggle />
+          <FavoriteModalButton />
         </Suspense>
       </FavoritesProvider>
     </ToastProvider>

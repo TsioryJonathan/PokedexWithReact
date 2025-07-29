@@ -27,7 +27,7 @@ export default function PokeDetailModal({ pokemonName, open, onClose }) {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-2 pb-5 data-[state=active]:bg-transparent! data-[state=active]:border-none! data-[state=active]:shadow-none! rounded-none text-lg font-semibold cursor-pointer"
+                className="flex items-center gap-2 pb-5 data-[state=active]:bg-transparent! data-[state=active]:border-none! data-[state=active]:shadow-none! rounded-none text-lg font-semibold cursor-pointer text-white"
               >
                 <Icon className="w-5 h-5 text-slate-400 data-[state=active]:text-white" />
                 {label}

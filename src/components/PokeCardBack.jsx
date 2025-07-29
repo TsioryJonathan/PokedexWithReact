@@ -2,13 +2,17 @@ import getTypeGradient from "@/utils/getTypeGradient";
 import React, { useState, useEffect } from "react";
 import FavoriteButton from "./favorite/FavoriteButton";
 import { PokeStatBadge } from "./PokeStatsBadge";
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 
 function PokeCardBack({ pokemon }) {
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
 
   return (
-    <div className={`absolute inset-0 rounded-xl ${isDark ? "bg-gray-900" : "bg-gray-100"} text-foreground overflow-hidden flex flex-col items-center [transform:rotateY(180deg)] [backface-visibility:hidden]`}>
+    <div
+      className={`absolute inset-0 rounded-xl ${
+        isDark ? "bg-gray-900" : "bg-gray-100"
+      } text-foreground overflow-hidden flex flex-col items-center [transform:rotateY(180deg)] [backface-visibility:hidden]`}
+    >
       <FavoriteButton pokemonName={pokemon.name} />
       <div
         className={`pt-4 text-center h-20 w-full text-foreground ${getTypeGradient(

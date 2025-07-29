@@ -1,9 +1,9 @@
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 function StatCircle({ value, max = 255, label }) {
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
   const pct = Math.round((value / max) * 100);
   return (
     <div className="w-16 flex flex-col items-center">
@@ -18,7 +18,11 @@ function StatCircle({ value, max = 255, label }) {
           textColor: isDark ? "#fff" : "#000",
         })}
       />
-      <span className={`mt-2 text-[14px] uppercase font-semibold ${isDark ? 'text-slate-400' : 'text-slate-900'}`}>
+      <span
+        className={`mt-2 text-[14px] uppercase font-semibold ${
+          isDark ? "text-slate-400" : "text-slate-900"
+        }`}
+      >
         {label}
       </span>
     </div>

@@ -1,8 +1,8 @@
 import { getStatColor, statIcons, prettyName } from "@/constants/SummaryStats";
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 
 export default function StatComparisonRow({ stat, v }) {
-  const isDark = useIsDarkTheme()
+  const isDark = useDarkTheme();
 
   const renderBar = (v, statName, dir) => {
     const pct = Math.min((v / 255) * 100, 100);
@@ -26,7 +26,13 @@ export default function StatComparisonRow({ stat, v }) {
             {prettyName(stat)}
           </span>
         </span>
-        <span className={`font-mono text-sm ${isDark ? "text-green-400" : "text-green-800"}`}>{v}</span>
+        <span
+          className={`font-mono text-sm ${
+            isDark ? "text-green-400" : "text-green-800"
+          }`}
+        >
+          {v}
+        </span>
       </div>
       {renderBar(v, stat, "ltr")}
     </div>

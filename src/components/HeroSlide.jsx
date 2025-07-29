@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import getTypeAccent from "@/utils/getTypeAccent";
@@ -9,7 +9,7 @@ import TrendingBadge from "./TrendingBadge";
 import { Button } from "./ui/button";
 import PokeDetailModal from "./PokeDetailModal";
 import Portal from "./Portal";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import CryButton from "./ui/CryButton";
 
 const fade = (delay = 0) => ({
@@ -19,7 +19,7 @@ const fade = (delay = 0) => ({
 });
 
 export default function HeroSlide({ pokemonName }) {
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,7 +44,7 @@ export default function HeroSlide({ pokemonName }) {
   if (loading || !pokemon) {
     return (
       <div className="flex items-center justify-center h-[50vh] text-slate-400 text-sm">
-        Loading…
+        <Loader2 className="w-10 h-10 animate-spin mr-2" />
       </div>
     );
   }
@@ -104,7 +104,11 @@ export default function HeroSlide({ pokemonName }) {
         <div
           className={`
             relative grid md:grid-cols-2 gap-10 items-center
-            ${isDark ? "bg-slate-900/55 border-white/10" : "bg-white/80 border-black/10"}
+            ${
+              isDark
+                ? "bg-slate-900/55 border-white/10"
+                : "bg-white/80 border-black/10"
+            }
             backdrop-blur-xl border rounded-2xl p-7 md:p-9 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.15)]
             overflow-hidden
           `}
@@ -124,7 +128,13 @@ export default function HeroSlide({ pokemonName }) {
             <div
               className={`absolute w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br ${accent.grad} opacity-25 blur-2xl`}
             />
-            <div className={`absolute w-56 h-56 md:w-72 md:h-72 rounded-full ${isDark ? "bg-slate-950/50 border-white/10" : "bg-black/10 border-black/20"}`} />
+            <div
+              className={`absolute w-56 h-56 md:w-72 md:h-72 rounded-full ${
+                isDark
+                  ? "bg-slate-950/50 border-white/10"
+                  : "bg-black/10 border-black/20"
+              }`}
+            />
             <motion.img
               src={pokemon.image}
               alt={pokemon.name}
@@ -133,7 +143,11 @@ export default function HeroSlide({ pokemonName }) {
               whileHover={{ scale: 1.045 }}
               transition={{ type: "spring", stiffness: 240, damping: 18 }}
             />
-            <div className={`absolute top-2 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-500/50 ${isDark ? " text-white/70" : " border-black/15 text-black/70"} backdrop-blur`}>
+            <div
+              className={`absolute top-2 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-500/50 ${
+                isDark ? " text-white/70" : " border-black/15 text-black/70"
+              } backdrop-blur`}
+            >
               #{pokemon.id.toString().padStart(4, "0")}
             </div>
           </motion.div>
@@ -150,7 +164,11 @@ export default function HeroSlide({ pokemonName }) {
               </div>
             </div>
 
-            <p className={`text-sm leading-relaxed max-w-md ${isDark ? "text-slate-300/90" : "text-black/70"}`}>
+            <p
+              className={`text-sm font-semibold leading-relaxed max-w-md ${
+                isDark ? "text-slate-300/90" : "text-black/70"
+              }`}
+            >
               {description}
             </p>
 
@@ -162,15 +180,17 @@ export default function HeroSlide({ pokemonName }) {
 
             {/* CTA Buttons */}
             <div className="flex gap-3 pt-1">
-              <Button
-                className={`group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold bg-gradient-to-r from-amber-400 to-amber-500 shadow hover:brightness-110 transition focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm cursor-pointer ${isDark ? "text-slate-900" : "text-black"}`}
+              <button
+                className={`group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold bg-gradient-to-r from-yellow-400 to-amber-500 brightness-100 shadow hover:brightness-110 transition focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm cursor-pointer ${
+                  isDark ? "text-slate-900" : "text-black"
+                }`}
                 onClick={() => setIsOpen(true)}
               >
                 View Profile
                 <span className="transition-transform group-hover:translate-x-1 text-base">
                   <ArrowRight className="w-4 h-4" />
                 </span>
-              </Button>
+              </button>
             </div>
           </motion.div>
         </div>

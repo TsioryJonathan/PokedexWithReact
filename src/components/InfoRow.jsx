@@ -1,16 +1,26 @@
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 
 const InfoRow = ({ icon, label, value }) => {
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
 
   return (
     <div className="flex items-start gap-3">
-      <div className={`p-2 rounded-md ${isDark ? 'bg-white/10' : 'bg-black/10'} flex items-center justify-center`}>
+      <div
+        className={`p-2 rounded-md ${
+          isDark ? "bg-white/10" : "bg-black/10"
+        } flex items-center justify-center`}
+      >
         {icon}
       </div>
       <div className="flex-1">
-        <p className={`text-xs uppercase tracking-wide ${isDark ? 'text-white/60' : 'text-black/60'}`}>{label}</p>
-        <p className="font-semibold capitalize text-sm">{value || "—"}</p>
+        <p
+          className={`text-sm font-bold uppercase tracking-wide ${
+            isDark ? "text-white/80" : "text-black/60"
+          }`}
+        >
+          {label}
+        </p>
+        <p className="font-normal capitalize text-sm">{value || "—"}</p>
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ const fade = {
   show: { opacity: 1, y: 0 },
 };
 
-// Simple hashing to generate a hue based on string
 const getHue = (str) =>
   str.split("").reduce((h, c) => h + c.charCodeAt(0), 0) % 360;
 
@@ -75,7 +74,7 @@ export default function PokemonMoves({ pokemonName }) {
               title={formatted}
             >
               <Zap className="w-5 h-5 text-white/90" />
-              <span className="truncate">{formatted}</span>
+              <span className="truncate capitalize">{formatted}</span>
               <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white/50 animate-pulse" />
             </motion.li>
           );

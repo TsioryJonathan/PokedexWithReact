@@ -9,7 +9,7 @@ import HeroSlide from "./HeroSlide";
 import { popularPokemon } from "@/constants/HeroSlide";
 import assets from "@/assets/assets";
 import ScrollToDexButton from "./ui/ScrollToDex";
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 
 function HeroSection() {
   const scrollToDex = () => {
@@ -17,12 +17,12 @@ function HeroSection() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
 
   return (
     <section
       className={`
-        relative w-full overflow-hidden hero-curved-bottom
+        relative w-full overflow-hidden
         ${isDark ? "bg-slate-950" : "bg-slate-100"}
         pb-20 pt-24 md:pt-28
       `}
@@ -85,7 +85,11 @@ function HeroSection() {
       <ScrollToDexButton />
 
       {/* Bottom divider accent */}
-      <div className={`absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent ${isDark ? "via-white/15" : "via-black/15"} to-transparent`} />
+      <div
+        className={`absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent ${
+          isDark ? "via-white/15" : "via-black/15"
+        } to-transparent`}
+      />
     </section>
   );
 }

@@ -2,14 +2,6 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
-/**
- * @param {boolean} open
- * @param {function} onClose
- * @param {React.ReactNode} children
- * @param {string} [title]
- * @param {string} [className]
- * @param {React.ReactNode} [header]
- */
 
 export default function ModalBase({
   open,
@@ -51,7 +43,7 @@ export default function ModalBase({
             className={`w-[90vw] min-h-[60vh] max-h-[95vh] rounded-2xl border shadow-2xl flex flex-col overflow-y-auto p-10 relative ${className} ${
               isDark
                 ? "bg-gradient-to-br from-slate-800/70 via-slate-900/80 to-slate-950/90 border-white/15"
-                : "bg-[var(--card)] border-[var(--border)]"
+                : "bg-gradient-to-br from-slate-800/40 via-slate-900/30 to-slate-950/10 border-white/15"
             }`}
             style={{
               color: "var(--foreground)",

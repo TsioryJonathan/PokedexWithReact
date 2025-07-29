@@ -1,14 +1,26 @@
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 
 const MiniStat = ({ label, value, hint }) => {
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
   return (
-    <div className={`${isDark ? "bg-white/10" : "bg-black/10"} rounded p-2 flex flex-col`}>
-      <span className={`text-[14px] font-bold uppercase tracking-wide ${isDark ? "text-white" : "text-black/80"}`}>
+    <div
+      className={`${
+        isDark ? "bg-white/10" : "bg-black/10"
+      } rounded p-2 flex flex-col`}
+    >
+      <span
+        className={`text-[14px] font-bold uppercase tracking-wide text-white`}
+      >
         {label}
       </span>
-      <span className={`text-sm font-semibold ${isDark ? "text-white/50" : "text-black/50"}`}>{value ?? "—"}</span>
-      {hint && <span className={`text-[10px] ${isDark ? "text-white/40" : "text-black/40"}`}>{hint}</span>}
+      <span className={`text-sm font-semiboldtext-white`}>{value ?? "—"}</span>
+      {hint && (
+        <span
+          className={`text-[10px] ${isDark ? "text-white" : "text-black/40"}`}
+        >
+          {hint}
+        </span>
+      )}
     </div>
   );
 };

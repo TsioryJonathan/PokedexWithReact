@@ -6,7 +6,7 @@ import GlobalDetailSkeleton from "./GlobalDetailSkeleton";
 import PokeTypeBadge from "@/components/PokeTypeBadge";
 import CryButton from "./ui/CryButton";
 import { Crown, Star, Heart, Share2 } from "lucide-react";
-import useIsDarkTheme from "@/hooks/useIsDarkTheme";
+import useDarkTheme from "@/hooks/useDarkTheme";
 
 const fadeIn = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -15,7 +15,7 @@ const fadeIn = (delay = 0) => ({
 });
 
 export default function GlobalDetail({ name }) {
-  const isDark = useIsDarkTheme();
+  const isDark = useDarkTheme();
   const { pokemon, loading, error } = usePokemonDetails(name);
   if (loading) return <GlobalDetailSkeleton />;
   if (error || !pokemon)

@@ -2,7 +2,7 @@ import { getStatColor, statIcons, prettyName } from "@/constants/SummaryStats";
 import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 
 export default function StatComparisonRow({ stat, v }) {
-  const isDark = useIsDarkTheme
+  const isDark = useIsDarkTheme()
 
   const renderBar = (v, statName, dir) => {
     const pct = Math.min((v / 255) * 100, 100);

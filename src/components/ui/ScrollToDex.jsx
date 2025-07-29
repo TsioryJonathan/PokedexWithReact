@@ -1,6 +1,8 @@
 import React, { useCallback } from "react";
+import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 
 export default function ScrollToDexButton({ targetId = "pokemon-list" }) {
+  const isDark = useIsDarkTheme();
   const scrollToDex = useCallback(() => {
     const el = document.getElementById(targetId);
     if (el) {
@@ -12,14 +14,13 @@ export default function ScrollToDexButton({ targetId = "pokemon-list" }) {
     <button
       type="button"
       onClick={scrollToDex}
-      className="
+      className={`
         fixed bottom-15 left-1/2 transform -translate-x-1/2
         flex flex-col items-center gap-2
-        text-slate-300 hover:text-white transition-colors
-        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-        
-        z-99
-      "
+        transition-colors z-99
+        ${isDark ? "text-slate-300 hover:text-white focus:ring-indigo-500" : "text-black/70 hover:text-black focus:ring-amber-400"}
+        focus:outline-none focus:ring-2 focus:ring-offset-2
+      `}
     >
       <span className="text-sm uppercase tracking-widest font-semibold">
         Scroll to Pokédex

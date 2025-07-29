@@ -1,3 +1,4 @@
+import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 import { STAT_ORDER } from "../constants/SummaryStats";
 export const SummaryStats = ({pokemon}) => {
   const stats = STAT_ORDER.map((key) =>
@@ -6,11 +7,12 @@ export const SummaryStats = ({pokemon}) => {
 
   const total = stats.reduce((acc, s) => acc + s.value, 0);
   const average = (total / stats.length).toFixed(1);
-  const isDark = typeof document !== "undefined" && document.body.classList.contains("dark");
+
+  const isDark = useIsDarkTheme()
   
   return (
     <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 text-sm">
-      <div className="bg-white/10 px-2 py-2 rounded-md backdrop-blur-sm flex items-center gap-2">
+      <div className={`${isDark ? 'bg-white/10' : 'bg-black/10'} px-2 py-2 rounded-md backdrop-blur-sm flex items-center gap-2`}>
         <span className="font-semibold text-foreground/70">Average</span>
         {(() => {
           let colorClass = "";
@@ -22,7 +24,7 @@ export const SummaryStats = ({pokemon}) => {
           );
         })()}
       </div>
-      <div className="bg-white/10 px-4 py-2 rounded-md backdrop-blur-sm flex items-center gap-2">
+      <div className={`${isDark ? 'bg-white/10' : 'bg-black/10'} px-4 py-2 rounded-md backdrop-blur-sm flex items-center gap-2`}>
         <span className="font-semibold text-foreground/70">Total</span>
         {(() => {
           let colorClass = "";

@@ -17,7 +17,7 @@ export default function ScrollToDexButton({ targetId = "pokemon-list" }) {
       className={`
         absolute bottom-5 cursor-pointer left-1/2 transform -translate-x-1/2
         flex flex-col items-center gap-2
-        transition-colors z-99
+        transition-colors z-10
         ${
           isDark
             ? "text-slate-300 hover:text-white focus:ring-indigo-500"

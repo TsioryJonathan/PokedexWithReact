@@ -88,7 +88,7 @@ export function usePokemonDetails(name) {
           generation: data2.generation?.name,
           cries: data1.cries?.latest || null,
           ev_yields: evYields,
-          moves: data1.moves.map((m) => m.move.name),
+          moves: data1.moves.map((m) => m.move),
         };
 
         setPokemon(pokemonData);

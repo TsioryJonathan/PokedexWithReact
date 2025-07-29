@@ -67,7 +67,6 @@ function PokemonList() {
         searchTerm={searchTerm}
       />
 
-      {/* Pagination controls with limited numbered navigation */}
       <div className="w-4/5 flex items-center justify-around gap-2 flex-wrap">
         <Button
           className="text-white bg-gray-800/50 hover:bg-gray-700 p-2 rounded cursor-pointer"

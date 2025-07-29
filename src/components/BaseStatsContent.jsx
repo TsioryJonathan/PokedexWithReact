@@ -33,7 +33,6 @@ export default function BaseStatsContent({ pokemonName }) {
     return <p className="text-red-500 text-center">Error: {error}</p>;
   }
 
-  // Prepare stats
   const stats = STAT_ORDER.map((key) =>
     pokemon.stats.find((s) => s.name === key)
   ).filter(Boolean);
@@ -51,7 +50,7 @@ export default function BaseStatsContent({ pokemonName }) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Circle overview */}
+   
         <motion.div
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
           initial="hidden"
@@ -65,7 +64,7 @@ export default function BaseStatsContent({ pokemonName }) {
           ))}
         </motion.div>
 
-        {/* Horizontal bars */}
+     
         <motion.div
           className="space-y-4"
           initial="hidden"

@@ -1,4 +1,3 @@
-// components/TrendingBadge.jsx
 import { Flame } from "lucide-react";
 import clsx from "clsx";
 import useDarkTheme from "@/hooks/useDarkTheme";

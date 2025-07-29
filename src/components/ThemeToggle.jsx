@@ -24,7 +24,6 @@ export default function ThemeToggle() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Animation à chaque switch
   const handleToggle = () => {
     setAnim(true);
     setTheme(theme === "light" ? "dark" : "light");

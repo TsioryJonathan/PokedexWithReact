@@ -3,7 +3,6 @@ import { MdCheckCircle, MdError, MdInfo, MdWarning } from "react-icons/md";
 
 const ToastContext = createContext();
 
-// Toast types and their default icons/colors
 const TOAST_TYPES = {
   success: {
     icon: <MdCheckCircle className="text-green-600 text-xl" />,

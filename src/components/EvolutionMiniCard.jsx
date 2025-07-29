@@ -1,4 +1,3 @@
-// src/components/EvolutionMiniCard.jsx
 import { useState } from "react";
 import PokeDetailModal from "@/components/PokeDetailModal";
 import pokemonColors from "@/utils/pokemonColors";

@@ -30,7 +30,7 @@ export default function GlobalDetail({ name }) {
       className={`relative flex flex-col md:flex-row gap-6 px-6 py-2 md:p-8 rounded-2xl `}
       style={{ backgroundColor: baseColor }}
     >
-      {/* Overlay gradient */}
+   
       <div
         className={`absolute inset-0 mix-blend-overlay rounded-2xl ${
           isDark
@@ -39,7 +39,7 @@ export default function GlobalDetail({ name }) {
         }`}
       />
 
-      {/* Legendary/Mythical badge */}
+    
       {(isLegendary || isMythical) && (
         <motion.div
           className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 rounded-full shadow-lg bg-gradient-to-br from-amber-400 to-yellow-200/40"
@@ -64,7 +64,7 @@ export default function GlobalDetail({ name }) {
         </motion.div>
       )}
 
-      {/* Pokémon Image */}
+     
       <motion.div
         className="relative md:w-1/3 flex justify-center items-center"
         {...fadeIn(0.2)}
@@ -89,7 +89,7 @@ export default function GlobalDetail({ name }) {
         </span>
       </motion.div>
 
-      {/* Info section */}
+  
       <div className="relative md:w-2/3 flex flex-col gap-4 text-white">
         <motion.div {...fadeIn(0.4)}>
           <h1 className="text-4xl font-extrabold capitalize tracking-tight text-white flex items-center gap-3">

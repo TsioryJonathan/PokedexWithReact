@@ -1,4 +1,3 @@
-// utils/getTypeIcon.jsx
 import {
   FaFire,
   FaWater,

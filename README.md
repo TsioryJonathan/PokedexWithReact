@@ -28,6 +28,7 @@
 ![Compare Pokémon](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/compare.PNG)
 ![Favorites](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/favorite.PNG)
 ![Search](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/research.PNG)
+![Pagination](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/pagination.PNG)
 
 ---
 

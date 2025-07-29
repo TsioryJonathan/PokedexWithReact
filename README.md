@@ -9,6 +9,7 @@
 
 > An interactive, animated Pokédex built with React, Tailwind CSS & Framer Motion.  
 > Browse, search and view detailed stats for over 1,000 Pokémon via the official PokéAPI.
+> Integrated dark/light Theme.
 
 ---
 
@@ -78,7 +79,7 @@
 
 ## 🛠 Tech Stack
 
-- **Framework**: React 18
+- **Framework**: React
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Icons**: lucide‑react, Material Icons

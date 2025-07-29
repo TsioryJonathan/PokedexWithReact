@@ -20,15 +20,27 @@
 
 ## 📸 Showcase
 
-<!-- Showcase -->
-
+### 🧭 Hero Section
 ![Hero Section](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/hero.PNG)
+
+### 📋 Pokédex List
 ![Pokédex Section](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/pokedex.PNG)
+
+### 🔍 Pokémon Detail Modal
 ![Detail Modal](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/details.PNG)
+
+### ⚔️ Compare Pokémon
 ![Compare Pokémon](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/compare.PNG)
+
+### ⭐ Favorite List
 ![Favorites](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/favorite.PNG)
+
+### 🔎 Search Input
 ![Search](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/research.PNG)
+
+### 📄 Pagination System
 ![Pagination](https://raw.githubusercontent.com/TsioryJonathan/PokedexWithReact/develop/public/pagination.PNG)
+
 
 ---
 

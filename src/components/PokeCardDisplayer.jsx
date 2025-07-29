@@ -32,6 +32,7 @@ const PokeCardDisplayer = ({ page, pokemonList, itemsPerPage, searchTerm }) => {
     <section
       className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-6"
       id="pokemon-list"
+      
       ref={containerRef}
     >
       {filtered.length > 0 ? (

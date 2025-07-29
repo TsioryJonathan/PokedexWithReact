@@ -16,7 +16,7 @@ function HeroSection() {
   return (
     <section
       className={`
-        relative w-full overflow-hidden
+        relative w-full overflow-hidden min-h-screen
         ${isDark ? "bg-slate-950" : "bg-slate-400"}
         pb-20 pt-24 md:pt-28
       `}
@@ -77,13 +77,6 @@ function HeroSection() {
 
       {/* Scroll cue */}
       <ScrollToDexButton />
-
-      {/* Bottom divider accent */}
-      <div
-        className={`absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent ${
-          isDark ? "via-white/15" : "via-black/15"
-        } to-transparent`}
-      />
     </section>
   );
 }

@@ -1,4 +1,6 @@
 import { GiHeartPlus, GiShield, GiBroadsword } from "react-icons/gi";
+import { useState, useEffect } from "react";
+import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 
 export const PokeStatBadge = ({ pokeStatData }) => {
   if (!pokeStatData || !Array.isArray(pokeStatData)) return null;
@@ -19,8 +21,10 @@ export const PokeStatBadge = ({ pokeStatData }) => {
     defense: "bg-blue-500",
   };
 
+const isDark = useIsDarkTheme();
+
   return (
-    <div className="flex flex-col gap-2 mt-4 text-white text-sm w-40">
+    <div className="flex flex-col gap-2 mt-4 text-foreground text-sm w-40">
       {filteredStats.map((stat, index) => {
         const name = stat.name.toLowerCase();
         const percentage = Math.min((parseFloat(stat.value) * 100) / 255, 100);
@@ -28,7 +32,7 @@ export const PokeStatBadge = ({ pokeStatData }) => {
         return (
           <div
             key={index}
-            className="flex justify-between items-center bg-white/10 px-3 py-1 rounded relative overflow-hidden"
+            className={`flex justify-between items-center ${isDark ? "bg-white/10" : "bg-black/10"} px-3 py-1 rounded relative overflow-hidden`}
           >
             <div
               className={`absolute inset-0 h-full z-0 transition-all duration-700 ease-in-out ${statColors[name]}`}

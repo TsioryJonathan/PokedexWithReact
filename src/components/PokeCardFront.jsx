@@ -22,7 +22,7 @@ function PokeCardFront({ pokemon }) {
         bgClassName="absolute inset-0 w-full h-full object-cover opacity-30 brightness-110 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
       />
 
-      <h1 className="text-2xl font-extrabold capitalize text-white">
+      <h1 className="text-2xl font-extrabold capitalize text-foreground">
         <span className="flex items-center justify-center">
           <Dot size={64} />
           {pokemon.name}
@@ -38,26 +38,26 @@ function PokeCardFront({ pokemon }) {
 
       <div className="flex justify-center gap-10 mt-2">
         <div className="flex flex-col">
-          <span className="text-gray-300 font-bold text-l">
+          <span className="text-foreground font-bold text-l">
             {pokemon.height / 10} M
           </span>
-          <span className="flex items-center gap-2 font-bold text-sm text-white">
-            <Ruler size={15} className="text-gray-300" />
+          <span className="flex items-center gap-2 font-bold text-sm text-foreground">
+            <Ruler size={15} className="text-foreground" />
             Height
           </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-gray-300 font-bold text-l">
+          <span className="text-foreground font-bold text-l">
             {pokemon.weight / 10} KG
           </span>
-          <span className="flex items-center gap-2 font-bold text-sm text-white">
-            <FaDumbbell size={15} className="text-gray-300" />
+          <span className="flex items-center gap-2 font-bold text-sm text-foreground">
+            <FaDumbbell size={15} className="text-foreground" />
             Weight
           </span>
         </div>
       </div>
 
-      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-white mb-3 bg-gradient-to-tr from-yellow-300 to-yellow-700 mt-5 px-3">
+      <Badge className="absolute bottom-0 right-5 text-sm font-semibold text-foreground mb-3 bg-gradient-to-tr from-yellow-300 to-yellow-700 mt-5 px-3">
         #{pokemon.id}
       </Badge>
     </div>

@@ -12,7 +12,8 @@ export default function TrendingBadge({
   return (
     <div
       className={clsx(
-        "inline-flex items-center gap-1.5 px-5 py-3 w-fit",
+        "hidden md:inline-flex items-center gap-1.5 px-5 py-3 w-fit",
+
         "select-none",
         "text-[12px] font-bold tracking-[0.25em] uppercase",
         "border border-amber-300/50",

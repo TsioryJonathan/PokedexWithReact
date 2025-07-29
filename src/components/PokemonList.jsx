@@ -35,7 +35,6 @@ function PokemonList() {
     );
   if (error) return <div>Error loading Pokémon data</div>;
 
-  // pagination window of max 10 pages
   const maxButtons = 10;
   let startPage = Math.max(1, page - Math.floor(maxButtons / 2));
   let endPage = Math.min(count, startPage + maxButtons - 1);
@@ -53,6 +52,13 @@ function PokemonList() {
         <PokeBallLogo className="w-20 h-20 object-cover" />
         <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
+
+      {searchTerm && (
+        <h1 className="font-bold text-lg">
+          Search result(s) for:{" "}
+          <span className="text-md font-normal">{searchTerm}</span>
+        </h1>
+      )}
 
       <PokeCardDisplayer
         page={page}
@@ -72,7 +78,7 @@ function PokemonList() {
           Previous
         </Button>
 
-        <div className="flex gap-5 items-center justify-center">
+        <div className="gap-5 items-center justify-center hidden md:flex">
           {pages.map((num) => (
             <Button
               key={num}

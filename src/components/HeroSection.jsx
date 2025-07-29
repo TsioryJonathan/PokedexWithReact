@@ -12,18 +12,12 @@ import ScrollToDexButton from "./ui/ScrollToDex";
 import useDarkTheme from "@/hooks/useDarkTheme";
 
 function HeroSection() {
-  const scrollToDex = () => {
-    const el = document.getElementById("pokedex-section");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   const isDark = useDarkTheme();
-
   return (
     <section
       className={`
         relative w-full overflow-hidden
-        ${isDark ? "bg-slate-950" : "bg-slate-100"}
+        ${isDark ? "bg-slate-950" : "bg-slate-400"}
         pb-20 pt-24 md:pt-28
       `}
     >

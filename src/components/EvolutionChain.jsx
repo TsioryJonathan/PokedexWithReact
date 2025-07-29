@@ -35,7 +35,7 @@ function EvolutionChain({ pokemonName }) {
     >
       <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-6 flex-wrap justify-center">
         {evolutionDetails.map((poke, index) => (
-          <div key={poke.id} className="flex items-center gap-6 md:gap-4">
+          <div key={poke.id} className="flex items-center gap-6 md:gap-4 flex-col md:flex-row">
             <EvolutionMiniCard poke={poke} />
             {index < evolutionDetails.length - 1 && (
               <FaArrowRight

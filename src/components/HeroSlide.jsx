@@ -80,7 +80,7 @@ export default function HeroSlide({ pokemonName }) {
         </Portal>
       )}
       <div className="relative w-full px-1">
-        <div className="absolute top-5 left-5 z-10">
+        <div className="opacity-0 md:opacity-100 absolute top-5 left-5 z-10">
           <CryButton pokemon={pokemon} />
         </div>
         {(isLegendary || isMythical) && (

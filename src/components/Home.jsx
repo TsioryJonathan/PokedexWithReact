@@ -7,7 +7,7 @@ function Home() {
   return (
     <div
       className={`min-w-screen min-h-screen px-10 py-10 ${
-        isDark ? "bg-gray-950" : "bg-gray-300"
+        isDark ? "bg-gray-950" : "bg-slate-300"
       }`}
       id="pokedex-section"
     >

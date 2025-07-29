@@ -12,6 +12,7 @@ import {
 import { SummaryStats } from "./SummaryStats";
 import StatCircle from "./StatCircle";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
@@ -21,6 +22,7 @@ const fadeUp = {
 export default function BaseStatsContent({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
+  const isDark = useIsDarkTheme();
 
   if (loading) {
     return (
@@ -41,7 +43,7 @@ export default function BaseStatsContent({ pokemonName }) {
   const average = (total / stats.length).toFixed(1);
 
   return (
-    <Card style={{ backgroundColor: bgColor }} className="text-white">
+    <Card style={{ backgroundColor: bgColor }} className="text-foreground">
       <CardHeader className="mb-4">
         <CardTitle className="flex items-center justify-between">
           <span>Base Stats</span>
@@ -88,7 +90,7 @@ export default function BaseStatsContent({ pokemonName }) {
                   </div>
                   <div className="font-mono text-sm">{stat.value}</div>
                 </div>
-                <div className="w-full h-3 bg-white/20 rounded overflow-hidden">
+                <div className={`w-full h-3 ${ isDark ? 'bg-white/20' : 'bg-black/20'} rounded overflow-hidden`}>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${percent}%` }}

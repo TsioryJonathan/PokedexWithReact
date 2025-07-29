@@ -9,11 +9,11 @@ function PokeTypeBadge({ type }) {
   return (
     <Badge
       className={cn(
-        "capitalize px-3 py-1 text-[12px] font-bold text-white flex items-center justify-center",
+        "capitalize px-3 py-1 text-[12px] font-bold text-foreground flex items-center justify-center",
         className
       )}
     >
-      <Icon className="text-white text-2xl" />
+      <Icon className="text-foreground text-2xl" />
       {type.toUpperCase()}
     </Badge>
   );

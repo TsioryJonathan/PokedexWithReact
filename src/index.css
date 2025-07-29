@@ -302,6 +302,26 @@ body {
     filter: drop-shadow(0 0 3px rgba(255, 180, 60, 0.5));
   }
 }
+.skeleton-bg {
+  background: var(--muted);
+}
+.skeleton-bg-dark {
+  background: var(--border);
+}
+.dark .skeleton-bg {
+  background: color-mix(in oklab, var(--muted) 80%, black 20%);
+}
+.dark .skeleton-bg-dark {
+  background: color-mix(in oklab, var(--border) 60%, white 5%, black 35%);
+}
+
+.stat-bar-bg {
+  background: color-mix(in oklab, var(--muted) 60%, var(--border) 40%);
+}
+.dark .stat-bar-bg {
+  background: color-mix(in oklab, var(--muted) 20%, var(--border) 80%);
+}
+
 @keyframes enterBadge {
   0% {
     opacity: 0;

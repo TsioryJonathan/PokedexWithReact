@@ -1,3 +1,4 @@
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -8,6 +9,7 @@ import HeroSlide from "./HeroSlide";
 import { popularPokemon } from "@/constants/HeroSlide";
 import assets from "@/assets/assets";
 import ScrollToDexButton from "./ui/ScrollToDex";
+import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 
 function HeroSection() {
   const scrollToDex = () => {
@@ -15,19 +17,32 @@ function HeroSection() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const isDark = useIsDarkTheme();
+
   return (
     <section
-      className="
+      className={`
         relative w-full overflow-hidden hero-curved-bottom
-        bg-slate-950
+        ${isDark ? "bg-slate-950" : "bg-slate-100"}
         pb-20 pt-24 md:pt-28
-      "
+      `}
     >
       {/* Soft layered gradients */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_35%,rgba(255,255,255,0.09),transparent_60%)] opacity-40" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_75%,rgba(255,255,255,0.06),transparent_60%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),transparent_30%,transparent_70%,rgba(255,255,255,0.04))]" />
-      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-slate-950 to-transparent" />
+      {isDark ? (
+        <>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_35%,rgba(255,255,255,0.09),transparent_60%)] opacity-40" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_75%,rgba(255,255,255,0.06),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.05),transparent_30%,transparent_70%,rgba(255,255,255,0.04))]" />
+          <div className="pointer-events-none absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-slate-950 to-transparent" />
+        </>
+      ) : (
+        <>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_35%,rgba(0,0,0,0.07),transparent_60%)] opacity-40" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_75%,rgba(0,0,0,0.04),transparent_60%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.04),transparent_30%,transparent_70%,rgba(0,0,0,0.02))]" />
+          <div className="pointer-events-none absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-gray-300 to-transparent" />
+        </>
+      )}
 
       {/* Top bar with logo */}
       <div className="absolute top-0 inset-x-0 flex justify-center pt-4 z-30">
@@ -70,7 +85,7 @@ function HeroSection() {
       <ScrollToDexButton />
 
       {/* Bottom divider accent */}
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <div className={`absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent ${isDark ? "via-white/15" : "via-black/15"} to-transparent`} />
     </section>
   );
 }

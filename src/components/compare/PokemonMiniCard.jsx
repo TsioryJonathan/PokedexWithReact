@@ -17,7 +17,9 @@ export default function PokemonMiniCard({ pokemon, className, isWinner }) {
       {isWinner && <WinnerBadge />}
       <div className="flex gap-4">
         <div className="mt-4 w-[40%] flex flex-col items-center justify-center">
-          <h2 className="text-xl font-bold capitalize mb-2 drop-shadow text-white">
+          <h2
+            className="text-xl font-bold capitalize mb-2 drop-shadow text-foreground"
+          >
             {pokemon.name}
           </h2>
           <PokeImage

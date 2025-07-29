@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import useIsDarkTheme from "@/hooks/useIsDarkTheme";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import getTypeAccent from "@/utils/getTypeAccent";
@@ -18,6 +19,7 @@ const fade = (delay = 0) => ({
 });
 
 export default function HeroSlide({ pokemonName }) {
+  const isDark = useIsDarkTheme();
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -100,12 +102,12 @@ export default function HeroSlide({ pokemonName }) {
         />
 
         <div
-          className="
+          className={`
             relative grid md:grid-cols-2 gap-10 items-center
-            bg-slate-900/55 backdrop-blur-xl border border-white/10
-            rounded-2xl p-7 md:p-9 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.65)]
+            ${isDark ? "bg-slate-900/55 border-white/10" : "bg-white/80 border-black/10"}
+            backdrop-blur-xl border rounded-2xl p-7 md:p-9 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.15)]
             overflow-hidden
-          "
+          `}
         >
           <div
             className={`pointer-events-none absolute inset-0 opacity-30 bg-gradient-to-br ${accent.grad}`}
@@ -122,7 +124,7 @@ export default function HeroSlide({ pokemonName }) {
             <div
               className={`absolute w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br ${accent.grad} opacity-25 blur-2xl`}
             />
-            <div className="absolute w-56 h-56 md:w-72 md:h-72 rounded-full bg-slate-950/50 border border-white/10" />
+            <div className={`absolute w-56 h-56 md:w-72 md:h-72 rounded-full ${isDark ? "bg-slate-950/50 border-white/10" : "bg-black/10 border-black/20"}`} />
             <motion.img
               src={pokemon.image}
               alt={pokemon.name}
@@ -131,14 +133,14 @@ export default function HeroSlide({ pokemonName }) {
               whileHover={{ scale: 1.045 }}
               transition={{ type: "spring", stiffness: 240, damping: 18 }}
             />
-            <div className="absolute top-2 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/10 border border-white/15 backdrop-blur text-white/70">
+            <div className={`absolute top-2 right-3 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-500/50 ${isDark ? " text-white/70" : " border-black/15 text-black/70"} backdrop-blur`}>
               #{pokemon.id.toString().padStart(4, "0")}
             </div>
           </motion.div>
 
           <motion.div {...fade(0.12)} className="flex flex-col gap-6">
             <div className="flex flex-wrap items-center gap-3">
-              <h2 className="capitalize text-4xl font-extrabold tracking-tight text-white">
+              <h2 className="capitalize text-4xl font-extrabold tracking-tight text-foreground">
                 {pokemon.name}
               </h2>
               <div className="flex gap-2">
@@ -148,7 +150,7 @@ export default function HeroSlide({ pokemonName }) {
               </div>
             </div>
 
-            <p className="text-slate-300/90 text-sm leading-relaxed max-w-md">
+            <p className={`text-sm leading-relaxed max-w-md ${isDark ? "text-slate-300/90" : "text-black/70"}`}>
               {description}
             </p>
 
@@ -161,7 +163,7 @@ export default function HeroSlide({ pokemonName }) {
             {/* CTA Buttons */}
             <div className="flex gap-3 pt-1">
               <Button
-                className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold text-slate-900 bg-gradient-to-r from-amber-400 to-amber-500 shadow hover:brightness-110 transition focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm cursor-pointer"
+                className={`group inline-flex items-center gap-1.5 px-4 py-2 rounded-md font-semibold bg-gradient-to-r from-amber-400 to-amber-500 shadow hover:brightness-110 transition focus:outline-none focus:ring-2 focus:ring-amber-400/40 text-sm cursor-pointer ${isDark ? "text-slate-900" : "text-black"}`}
                 onClick={() => setIsOpen(true)}
               >
                 View Profile

@@ -15,12 +15,12 @@ const InfoRow = ({ icon, label, value }) => {
       <div className="flex-1">
         <p
           className={`text-sm font-bold uppercase tracking-wide ${
-            isDark ? "text-white/80" : "text-black/60"
+            isDark ? "text-white/80" : "text-white"
           }`}
         >
           {label}
         </p>
-        <p className="font-normal capitalize text-sm">{value || "—"}</p>
+        <p className="font-normal capitalize text-sm text-white">{value || "—"}</p>
       </div>
     </div>
   );

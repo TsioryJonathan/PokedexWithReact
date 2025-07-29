@@ -16,7 +16,7 @@ const MiniStat = ({ label, value, hint }) => {
       <span className={`text-sm font-semiboldtext-white`}>{value ?? "—"}</span>
       {hint && (
         <span
-          className={`text-[10px] ${isDark ? "text-white" : "text-black/40"}`}
+          className={`text-[10px] ${isDark ? "text-white" : "text-white"}`}
         >
           {hint}
         </span>

@@ -10,7 +10,7 @@ const Label = ({ icon, text }) => {
       </span>
       <span
         className={`text-sm uppercase tracking-wide ${
-          isDark ? "text-white/70" : "text-black/70"
+          isDark ? "text-white/70" : "text-white"
         }`}
       >
         {text}

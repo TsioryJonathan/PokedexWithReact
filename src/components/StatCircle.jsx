@@ -15,12 +15,12 @@ function StatCircle({ value, max = 255, label }) {
           textSize: "28px",
           pathColor: "#F59E0B",
           trailColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.12)",
-          textColor: isDark ? "#fff" : "#000",
+          textColor: "#fff",
         })}
       />
       <span
         className={`mt-2 text-[14px] uppercase font-semibold ${
-          isDark ? "text-slate-400" : "text-slate-900"
+          isDark ? "text-white" : "text-white"
         }`}
       >
         {label}

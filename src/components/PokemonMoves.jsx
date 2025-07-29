@@ -96,7 +96,7 @@ export default function PokemonMoves({ pokemonName }) {
               key={i}
               onClick={() => goToPage(i + 1)}
               className={
-                `px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-medium ` +
+                `px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm font-medium text-white ` +
                 (currentPage === i + 1
                   ? "bg-indigo-600 text-white"
                   : "text-slate-400 hover:text-white")

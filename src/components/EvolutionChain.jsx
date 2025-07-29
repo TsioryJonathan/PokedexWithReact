@@ -1,4 +1,3 @@
-// components/EvolutionChain.jsx
 import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
 import useEvolutionChainDetails from "@/hooks/useEvolutionChainDetails";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
@@ -24,22 +23,29 @@ function EvolutionChain({ pokemonName }) {
   if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
   if (error || errorDetails)
     return (
-      <p className="text-red-500 text-lg">
+      <p className="text-red-500 text-lg text-center px-4">
         There was an error loading the evolution chain.
       </p>
     );
+
   return (
     <div
-      className="flex flex-col gap-6 w-full h-fit px-6 py-6 rounded-lg relative overflow-hidden"
+      className="relative w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-gradient-to-br from-slate-900 to-slate-800 py-8 px-6"
       style={{ backgroundColor: bgColor }}
     >
+      <h2 className="text-white text-2xl font-bold mb-6 text-center drop-shadow-md">
+        Evolution Chain
+      </h2>
       <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-6 flex-wrap justify-center">
         {evolutionDetails.map((poke, index) => (
-          <div key={poke.id} className="flex items-center gap-6 md:gap-4 flex-col md:flex-row">
+          <div
+            key={poke.id}
+            className="flex items-center gap-6 md:gap-4 flex-col md:flex-row"
+          >
             <EvolutionMiniCard poke={poke} />
             {index < evolutionDetails.length - 1 && (
               <FaArrowRight
-                className="text-white/70 text-2xl md:text-xl rotate-90 md:rotate-0"
+                className="text-white/80 text-2xl md:text-xl rotate-90 md:rotate-0 animate-pulse"
                 aria-hidden="true"
               />
             )}

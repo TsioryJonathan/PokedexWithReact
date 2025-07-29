@@ -21,6 +21,7 @@ import {
 
 function PokeAbout({ pokemonName }) {
   const { pokemon, loading, error } = usePokemonDetails(pokemonName);
+
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
   if (loading) return <div className="text-center py-8">Loading…</div>;
@@ -34,6 +35,8 @@ function PokeAbout({ pokemonName }) {
 
   const totalStats = pokemon.stats.reduce((a, s) => a + s.value, 0);
   const avgStat = (totalStats / pokemon.stats.length).toFixed(1);
+
+  console.log(pokemon.abilities);
 
   return (
     <div
@@ -124,7 +127,6 @@ function PokeAbout({ pokemonName }) {
               hint={`${pokemon.hatch_counter} cycles`}
             />
           </div>
-
           {/* EV Yields */}
           {pokemon.ev_yields?.length > 0 && (
             <div>
@@ -151,7 +153,6 @@ function PokeAbout({ pokemonName }) {
               </ul>
             </div>
           )}
-
           {/* Held Items */}
           {pokemon.held_items?.length > 0 && (
             <div>
@@ -164,7 +165,25 @@ function PokeAbout({ pokemonName }) {
               </p>
             </div>
           )}
-
+          Abilities
+          {pokemon.abilities?.length > 0 && (
+            <div>
+              <Label
+                icon={<Puzzle className="text-purple-300" />}
+                text="Abilities"
+              />
+              <ul className="mt-2 flex flex-wrap gap-2 text-sm">
+                {pokemon.abilities.map((ability) => (
+                  <li
+                    key={ability.name}
+                    className="bg-white/15 text-white/90 px-3 py-1 rounded-full capitalize tracking-wide font-medium shadow-sm backdrop-blur-sm"
+                  >
+                    {pretty(ability.name)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="bg-white/10 rounded p-3 space-y-2">
             <div className="flex justify-between text-md text-white/70">
               <span>Total</span>

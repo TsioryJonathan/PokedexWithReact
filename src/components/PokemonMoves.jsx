@@ -33,7 +33,7 @@ export default function PokemonMoves({ pokemonName }) {
   }, [moves, currentPage]);
 
   if (loading)
-    return <p className="text-center text-slate-400">Loading moves…</p>;
+    return <p className="text-center text-slate-400">Loading d</p>;
   if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
   const goToPage = (n) => {

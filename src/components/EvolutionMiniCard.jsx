@@ -1,3 +1,4 @@
+// src/components/EvolutionMiniCard.jsx
 import { useState } from "react";
 import PokeDetailModal from "@/components/PokeDetailModal";
 import pokemonColors from "@/utils/pokemonColors";
@@ -18,7 +19,11 @@ export default function EvolutionMiniCard({ poke, evolutionHint }) {
   return (
     <>
       {open && (
-        <PokeDetailModal pokemonName={name} open={open} onClose={() => setOpen(false)} />
+        <PokeDetailModal
+          pokemonName={name}
+          open={open}
+          onClose={() => setOpen(false)}
+        />
       )}
 
       <button
@@ -26,7 +31,7 @@ export default function EvolutionMiniCard({ poke, evolutionHint }) {
         aria-label={`Open ${name} details`}
         className={`
           group relative w-36 xs:w-40
-          rounded-2xl p-3 pb-4 flex flex-col items-center gap-1.5
+          rounded-xl p-3 pb-4 flex flex-col items-center gap-1.5
           overflow-hidden cursor-pointer
           border border-white/15
           bg-gradient-to-br from-white/10 via-white/5 to-white/0
@@ -35,6 +40,7 @@ export default function EvolutionMiniCard({ poke, evolutionHint }) {
           transition
           focus:outline-none focus:ring-2 focus:ring-yellow-400/40
           hover:-translate-y-1 hover:shadow-[0_8px_28px_-6px_rgba(0,0,0,0.6)]
+          hover:ring-2 hover:ring-yellow-400/30
         `}
         style={{
           backgroundColor: base + "CC",
@@ -69,11 +75,11 @@ export default function EvolutionMiniCard({ poke, evolutionHint }) {
           />
         </div>
 
-        <p className="capitalize font-semibold text-sm tracking-wide text-white drop-shadow-sm">
+        <p className="capitalize font-bold text-sm tracking-wide text-white drop-shadow-sm">
           {name}
         </p>
 
-        <span className="text-[10px] font-mono text-white/55">
+        <span className="text-[11px] font-mono text-white/60">
           #{id.toString().padStart(4, "0")}
         </span>
 
@@ -84,7 +90,7 @@ export default function EvolutionMiniCard({ poke, evolutionHint }) {
         )}
 
         <span
-          className="pointer-events-none absolute inset-0 rounded-2xl ring-0
+          className="pointer-events-none absolute inset-0 rounded-xl ring-0
                      group-hover:ring-2 ring-yellow-400/30 transition"
         />
       </button>

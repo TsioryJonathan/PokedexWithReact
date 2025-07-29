@@ -40,7 +40,7 @@ export default function ModalBase({
           document.body.classList.contains("dark");
         return (
           <motion.div
-            className={`w-[90vw] min-h-[60vh] max-h-[95vh] rounded-2xl border shadow-2xl flex flex-col overflow-y-auto p-10 relative ${className} ${
+            className={`w-[95vw] min-h-[60vh] max-h-[97vh] rounded-2xl border shadow-2xl flex flex-col overflow-y-auto p-4 relative ${className} ${
               isDark
                 ? "bg-gradient-to-br from-slate-800/70 via-slate-900/80 to-slate-950/90 border-white/15"
                 : "bg-gradient-to-br from-slate-800/40 via-slate-900/30 to-slate-950/10 border-white/15"

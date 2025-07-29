@@ -18,7 +18,7 @@ const tabs = [
 export default function PokeDetailModal({ pokemonName, open, onClose }) {
   return (
     <ModalBase open={open} onClose={onClose}>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4">
         <GlobalDetail name={pokemonName} />
 
         <Tabs defaultValue="about" className="w-full">

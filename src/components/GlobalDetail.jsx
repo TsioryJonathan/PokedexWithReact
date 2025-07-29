@@ -27,9 +27,8 @@ export default function GlobalDetail({ name }) {
 
   return (
     <motion.div
-      className={`relative flex flex-col md:flex-row gap-6 p-6 md:p-8 rounded-2xl `}
+      className={`relative flex flex-col md:flex-row gap-6 px-6 py-2 md:p-8 rounded-2xl `}
       style={{ backgroundColor: baseColor }}
-      {...fadeIn(0)}
     >
       {/* Overlay gradient */}
       <div

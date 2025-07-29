@@ -17,7 +17,7 @@ export const SummaryStats = ({ pokemon }) => {
           isDark ? "bg-white/10" : "bg-black/10"
         } px-2 py-2 rounded-md backdrop-blur-sm flex items-center gap-2`}
       >
-        <span className="font-semibold text-foreground/70">Average</span>
+        <span className="font-semibold text-white/70">Average</span>
         {(() => {
           let colorClass = "";
           if (average >= 100)
@@ -33,7 +33,7 @@ export const SummaryStats = ({ pokemon }) => {
           isDark ? "bg-white/10" : "bg-black/10"
         } px-4 py-2 rounded-md backdrop-blur-sm flex items-center gap-2`}
       >
-        <span className="font-semibold text-foreground/70">Total</span>
+        <span className="font-semibold text-white/70">Total</span>
         {(() => {
           let colorClass = "";
           if (total >= 600)

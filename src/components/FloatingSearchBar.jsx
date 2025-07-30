@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Search } from "lucide-react";
 import SearchInput from "./SearchInput";
 import PokeBallLogo from "./PokeBallLogo";
+import { Tooltip } from "@mui/material";
 
 export default function FloatingSearchBar({ searchTerm, setSearchTerm }) {
   const [open, setOpen] = useState(false);
@@ -31,24 +32,26 @@ export default function FloatingSearchBar({ searchTerm, setSearchTerm }) {
   }, [open, inputRef]);
 
   return (
-    <div className="fixed top-7 right-8 z-50 flex items-center gap-4">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="bg-white/10 hover:bg-white/30 p-2 rounded-full transition cursor-pointer"
-      >
-        <PokeBallLogo className={"w-14 h-14"} />
-      </button>
+    <Tooltip title="Search for a Pokémon" placement="left" arrow>
+      <div className="fixed top-7 right-30 z-50 flex items-center gap-4">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="bg-white/30 hover:bg-white/50 p-1 rounded-full transition cursor-pointer"
+        >
+          <PokeBallLogo className={"w-14 h-14"} />
+        </button>
 
-      {open && (
-        <div className="w-64 transition-all duration-200 ease-in">
-          <SearchInput
-            ref={inputRef}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-          />
-        </div>
-      )}
-    </div>
+        {open && (
+          <div className="w-64 transition-all duration-200 ease-in">
+            <SearchInput
+              ref={inputRef}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
+          </div>
+        )}
+      </div>
+    </Tooltip>
   );
 }

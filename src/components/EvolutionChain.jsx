@@ -4,7 +4,7 @@ import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
 import { FaArrowRight } from "react-icons/fa";
-import EvolutionMiniCard from "./EvolutionMiniCard";
+import EvolutionMiniCard from "./evolution/EvolutionMiniCard";
 
 function EvolutionChain({ pokemonName }) {
   const { evolutionChain, loading, error } = usePokemonEvolutionDetails(

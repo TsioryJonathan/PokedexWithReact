@@ -31,7 +31,7 @@ export default function ThemeToggle() {
   };
 
   return (
-    <div className="fixed bottom-8 left-8 z-41 flex flex-col items-end gap-2">
+    <div className="fixed top-8 right-8 z-41 flex flex-col items-end gap-2">
       <Tooltip title={theme === "light" ? "Activate the dark mode" : "Activate the light mode"} placement="left" arrow>
         <Button
           onClick={handleToggle}

@@ -1,10 +1,10 @@
 import React from "react";
-import GlobalDetail from "./GlobalDetail";
+import GlobalDetail from "./globalDetail/GlobalDetail";
 import EvolutionChain from "./EvolutionChain";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import PokeAbout from "./PokeAbout";
+import PokeAbout from "./pokeAbout/PokeAbout";
 import BaseStatsContent from "./BaseStatsContent";
-import PokemonMoves from "./PokemonMoves";
+import PokemonMoves from "./move/PokemonMoves";
 import ModalBase from "./ui/ModalBase";
 import { Info, BarChart2, GitBranch, Zap } from "lucide-react";
 

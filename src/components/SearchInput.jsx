@@ -29,7 +29,7 @@ function SearchInput({ searchTerm, setSearchTerm }) {
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search for a pokemon..."
         className="
-          w-full pl-12 pr-20 py-3
+          w-full pl-12 pr-5 py-3
           bg-white dark:bg-gray-800
           border border-gray-300 dark:border-gray-600
           text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400

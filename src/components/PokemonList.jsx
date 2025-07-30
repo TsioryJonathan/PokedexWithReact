@@ -6,6 +6,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
 import SearchInput from "./SearchInput";
 import PokeBallLogo from "./PokeBallLogo";
+import FloatingSearchBar from "./FloatingSearchBar";
 
 function PokemonList() {
   const { pokemonList, loading, error } = usePokemonList();
@@ -48,10 +49,15 @@ function PokemonList() {
 
   return (
     <div className="flex flex-col items-center gap-8">
-      <div className="flex gap-5 items-center justify-center">
+      {/* <div className="flex gap-5 items-center justify-center w-full">
         <PokeBallLogo className="w-20 h-20 object-cover" />
         <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      </div>
+      </div> */}
+
+      <FloatingSearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
       {searchTerm && (
         <h1 className="font-bold text-lg">

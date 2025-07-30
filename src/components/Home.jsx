@@ -1,5 +1,6 @@
 import PokemonList from "@/components/PokemonList";
 import React from "react";
+import Footer from "./ui/Footer";
 
 function Home() {
   return (
@@ -8,6 +9,7 @@ function Home() {
       id="pokedex-section"
     >
       <PokemonList />
+      <Footer />
     </div>
   );
 }

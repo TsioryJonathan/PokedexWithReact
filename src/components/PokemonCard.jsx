@@ -1,3 +1,4 @@
+import React from "react";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import PokemonCardSkeleton from "@/components/PokemonCardSkeleton";
 import { useState } from "react";

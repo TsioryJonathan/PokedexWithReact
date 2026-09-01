@@ -38,4 +38,4 @@ function PokemonCard({ pokemonName }) {
   );
 }
 
-export default PokemonCard;
+export default React.memo(PokemonCard);

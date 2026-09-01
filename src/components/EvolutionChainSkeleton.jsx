@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { FaArrowRight } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
 
 function EvolutionChainSkeleton() {
   return (
@@ -17,7 +17,7 @@ function EvolutionChainSkeleton() {
 
             {index < 2 && (
               <span className="text-muted-foreground text-2xl">
-                <FaArrowRight />
+                <ArrowRight />
               </span>
             )}
           </div>

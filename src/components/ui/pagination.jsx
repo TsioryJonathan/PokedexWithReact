@@ -1,4 +1,4 @@
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./button";
 
 function PaginationControls({ page, setPage, count }) {
@@ -21,7 +21,7 @@ function PaginationControls({ page, setPage, count }) {
         onClick={handlePrevious}
         disabled={page <= 1}
       >
-        <ArrowBack />
+        <ChevronLeft />
         Previous
       </Button>
       <div className="gap-5 items-center justify-center hidden md:flex">
@@ -43,7 +43,7 @@ function PaginationControls({ page, setPage, count }) {
         disabled={page >= count}
       >
         Next
-        <ArrowForward />
+        <ChevronRight />
       </Button>
     </div>
   );

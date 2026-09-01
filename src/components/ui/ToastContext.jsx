@@ -1,23 +1,23 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
-import { MdCheckCircle, MdError, MdInfo, MdWarning } from "react-icons/md";
+import { CheckCircle, XCircle, Info, AlertTriangle } from "lucide-react";
 
 const ToastContext = createContext();
 
 const TOAST_TYPES = {
   success: {
-    icon: <MdCheckCircle className="text-green-600 text-xl" />,
+    icon: <CheckCircle className="text-green-600 text-xl" />,
     color: "bg-green-100 text-green-900 border-green-400",
   },
   error: {
-    icon: <MdError className="text-red-600 text-xl" />,
+    icon: <XCircle className="text-red-600 text-xl" />,
     color: "bg-red-100 text-red-900 border-red-400",
   },
   warning: {
-    icon: <MdWarning className="text-yellow-600 text-xl" />,
+    icon: <AlertTriangle className="text-yellow-600 text-xl" />,
     color: "bg-yellow-100 text-yellow-900 border-yellow-400",
   },
   info: {
-    icon: <MdInfo className="text-blue-600 text-xl" />,
+    icon: <Info className="text-blue-600 text-xl" />,
     color: "bg-blue-100 text-blue-900 border-blue-400",
   },
 };

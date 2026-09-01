@@ -2,7 +2,7 @@ import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
 import useEvolutionChainDetails from "@/hooks/useEvolutionChainDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
-import { FaArrowRight } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
 import EvolutionMiniCard from "./evolution/EvolutionMiniCard";
 
 function EvolutionChain({ pokemon, loading: pokemonLoading }) {
@@ -42,7 +42,7 @@ function EvolutionChain({ pokemon, loading: pokemonLoading }) {
           >
             <EvolutionMiniCard poke={poke} />
             {index < evolutionDetails.length - 1 && (
-              <FaArrowRight
+              <ArrowRight
                 className="text-white/80 text-2xl md:text-xl rotate-90 md:rotate-0 animate-pulse"
                 aria-hidden="true"
               />

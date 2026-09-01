@@ -2,10 +2,10 @@ import getTypeGradient from "@/utils/getTypeGradient";
 import React from "react";
 import FavoriteButton from "./favorite/FavoriteButton";
 import { PokeStatBadge } from "./PokeStatsBadge";
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 
 function PokeCardBack({ pokemon }) {
-  const isDark = useDarkTheme();
+  const isDark = useTheme();
 
   return (
     <div
@@ -40,4 +40,4 @@ function PokeCardBack({ pokemon }) {
   );
 }
 
-export default PokeCardBack;
+export default React.memo(PokeCardBack);

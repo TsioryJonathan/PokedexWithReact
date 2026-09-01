@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Tooltip } from "@mui/material";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { Moon, Sun } from "lucide-react";
 import { keyframes } from "@emotion/react";
 
 const rotateAnim = keyframes`
@@ -59,7 +59,7 @@ export default function ThemeToggle() {
               animation: anim ? `${rotateAnim} 0.35s` : undefined,
             }}
           >
-            {theme === "light" ? <MdDarkMode size={28} /> : <MdLightMode size={28} />}
+            {theme === "light" ? <Moon size={28} /> : <Sun size={28} />}
           </span>
         </Button>
       </Tooltip>

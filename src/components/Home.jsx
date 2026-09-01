@@ -1,9 +1,9 @@
 import PokemonList from "@/components/PokemonList";
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 import React from "react";
 
 function Home() {
-  const isDark = useDarkTheme();
+  const isDark = useTheme();
   return (
     <div
       className={`min-w-screen min-h-screen px-10 py-10 pb-20 ${

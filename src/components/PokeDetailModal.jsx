@@ -7,6 +7,7 @@ import BaseStatsContent from "./BaseStatsContent";
 import PokemonMoves from "./move/PokemonMoves";
 import ModalBase from "./ui/ModalBase";
 import { Info, BarChart2, GitBranch, Zap } from "lucide-react";
+import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 
 const tabs = [
   { value: "about", label: "About", Icon: Info },
@@ -16,10 +17,12 @@ const tabs = [
 ];
 
 export default function PokeDetailModal({ pokemonName, open, onClose }) {
+  const { pokemon, loading, error } = usePokemonDetails(pokemonName);
+
   return (
     <ModalBase open={open} onClose={onClose}>
       <div className="flex flex-col gap-4">
-        <GlobalDetail name={pokemonName} />
+        <GlobalDetail pokemon={pokemon} loading={loading} error={error} />
 
         <Tabs defaultValue="about" className="w-full">
           <TabsList className="bg-transparent w-full border-b-1 rounded-none">
@@ -36,13 +39,13 @@ export default function PokeDetailModal({ pokemonName, open, onClose }) {
           </TabsList>
 
           <TabsContent value="evolution" className="w-full">
-            <EvolutionChain pokemonName={pokemonName} />
+            <EvolutionChain pokemon={pokemon} loading={loading} />
           </TabsContent>
           <TabsContent value="about" className="w-full">
-            <PokeAbout pokemonName={pokemonName} />
+            <PokeAbout pokemon={pokemon} loading={loading} error={error} />
           </TabsContent>
           <TabsContent value="stat" className="w-full">
-            <BaseStatsContent pokemonName={pokemonName} />
+            <BaseStatsContent pokemon={pokemon} loading={loading} error={error} />
           </TabsContent>
           <TabsContent value="moves" className="w-full">
             <PokemonMoves pokemonName={pokemonName} />

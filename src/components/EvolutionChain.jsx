@@ -1,14 +1,13 @@
 import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
 import useEvolutionChainDetails from "@/hooks/useEvolutionChainDetails";
-import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
 import { FaArrowRight } from "react-icons/fa";
 import EvolutionMiniCard from "./evolution/EvolutionMiniCard";
 
-function EvolutionChain({ pokemonName }) {
+function EvolutionChain({ pokemon, loading: pokemonLoading }) {
   const { evolutionChain, loading, error } = usePokemonEvolutionDetails(
-    pokemonName.split("-")[0]
+    pokemon?.name?.split("-")[0]
   );
 
   const {
@@ -17,10 +16,9 @@ function EvolutionChain({ pokemonName }) {
     error: errorDetails,
   } = useEvolutionChainDetails(evolutionChain);
 
-  const { pokemon } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
-  if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
+  if (pokemonLoading || loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
   if (error || errorDetails)
     return (
       <p className="text-red-500 text-lg text-center px-4">

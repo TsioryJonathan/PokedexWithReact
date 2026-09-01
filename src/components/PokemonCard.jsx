@@ -1,3 +1,4 @@
+import React from "react";
 import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import PokemonCardSkeleton from "@/components/PokemonCardSkeleton";
 import { useState } from "react";
@@ -38,4 +39,4 @@ function PokemonCard({ pokemonName }) {
   );
 }
 
-export default PokemonCard;
+export default React.memo(PokemonCard);

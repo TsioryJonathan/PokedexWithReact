@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CompareModal from "./CompareModal";
 import { Button, Tooltip } from "@mui/material";
-import { MdCompare } from "react-icons/md";
+import { GitCompareArrows } from "lucide-react";
 
 export const CompareButton = (props) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -31,7 +31,7 @@ export const CompareButton = (props) => {
             color="primary"
             variant="contained"
           >
-            <MdCompare size={28} />
+            <GitCompareArrows size={28} />
           </Button>
         </Tooltip>
       </div>

@@ -1,7 +1,6 @@
 import React from "react";
-import { FaDumbbell } from "react-icons/fa";
 import { Badge } from "./ui/badge";
-import { Dot, Ruler } from "lucide-react";
+import { Dot, Ruler, Dumbbell } from "lucide-react";
 import PokeTypeBadge from "./PokeTypeBadge";
 import getTypeGradient from "@/utils/getTypeGradient";
 import PokeImage from "./ui/pokeImage";
@@ -51,7 +50,7 @@ function PokeCardFront({ pokemon }) {
             {pokemon.weight / 10} KG
           </span>
           <span className="flex items-center gap-2 font-bold text-sm text-white">
-            <FaDumbbell size={15} className="text-white" />
+            <Dumbbell size={15} className="text-white" />
             Weight
           </span>
         </div>
@@ -64,4 +63,4 @@ function PokeCardFront({ pokemon }) {
   );
 }
 
-export default PokeCardFront;
+export default React.memo(PokeCardFront);

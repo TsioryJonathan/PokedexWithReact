@@ -1,6 +1,6 @@
-import { GiHeartPlus, GiShield, GiBroadsword } from "react-icons/gi";
+import { Heart, Shield, Swords } from "lucide-react";
 import { useState, useEffect } from "react";
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export const PokeStatBadge = ({ pokeStatData }) => {
   if (!pokeStatData || !Array.isArray(pokeStatData)) return null;
@@ -10,9 +10,9 @@ export const PokeStatBadge = ({ pokeStatData }) => {
   );
 
   const statIcons = {
-    hp: <GiHeartPlus className="text-pink-400" />,
-    attack: <GiBroadsword className="text-orange-400" />,
-    defense: <GiShield className="text-blue-400" />,
+    hp: <Heart className="text-pink-400" />,
+    attack: <Swords className="text-orange-400" />,
+    defense: <Shield className="text-blue-400" />,
   };
 
   const statColors = {
@@ -21,7 +21,7 @@ export const PokeStatBadge = ({ pokeStatData }) => {
     defense: "bg-blue-500",
   };
 
-  const isDark = useDarkTheme();
+  const isDark = useTheme();
 
   return (
     <div className="flex flex-col gap-2 mt-4 text-foreground text-sm w-40">

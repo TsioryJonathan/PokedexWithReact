@@ -1,5 +1,4 @@
-import { FaHeart, FaBolt } from "react-icons/fa";
-import { GiBroadsword, GiShield, GiMagicPalm, GiBrain } from "react-icons/gi";
+import { Heart, Zap, Swords, Shield, Sparkles, Brain } from "lucide-react";
 
 export const STAT_ORDER = [
   "hp",
@@ -11,12 +10,12 @@ export const STAT_ORDER = [
 ];
 
 export const statIcons = {
-  hp: <FaHeart className="text-red-400" />,
-  attack: <GiBroadsword className="text-orange-400" />,
-  defense: <GiShield className="text-yellow-400" />,
-  "special-attack": <GiMagicPalm className="text-purple-400" />,
-  "special-defense": <GiBrain className="text-indigo-400" />,
-  speed: <FaBolt className="text-green-400" />,
+  hp: <Heart className="text-red-400" />,
+  attack: <Swords className="text-orange-400" />,
+  defense: <Shield className="text-yellow-400" />,
+  "special-attack": <Sparkles className="text-purple-400" />,
+  "special-defense": <Brain className="text-indigo-400" />,
+  speed: <Zap className="text-green-400" />,
 };
 
 export const getStatColor = (name) => {

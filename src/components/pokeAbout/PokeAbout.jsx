@@ -1,4 +1,3 @@
-import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import { ratioGender } from "@/constants/AboutPokemon";
 import { prettyName as pretty, getStatColor } from "@/constants/SummaryStats";
@@ -11,8 +10,7 @@ import HeldItems from "./HeldItems";
 import Abilities from "./Abilities";
 import TotalStats from "./TotalStats";
 
-function PokeAbout({ pokemonName }) {
-  const { pokemon, loading, error } = usePokemonDetails(pokemonName);
+function PokeAbout({ pokemon, loading, error }) {
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
   if (loading) return <div className="text-center py-8">Loading…</div>;

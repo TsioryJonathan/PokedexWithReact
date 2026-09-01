@@ -1,14 +1,13 @@
 import usePokemonEvolutionDetails from "@/hooks/usePokemonEvolutionDetails";
 import useEvolutionChainDetails from "@/hooks/useEvolutionChainDetails";
-import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
 import EvolutionChainSkeleton from "./EvolutionChainSkeleton";
-import { FaArrowRight } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
 import EvolutionMiniCard from "./evolution/EvolutionMiniCard";
 
-function EvolutionChain({ pokemonName }) {
+function EvolutionChain({ pokemon, loading: pokemonLoading }) {
   const { evolutionChain, loading, error } = usePokemonEvolutionDetails(
-    pokemonName.split("-")[0]
+    pokemon?.name?.split("-")[0]
   );
 
   const {
@@ -17,10 +16,9 @@ function EvolutionChain({ pokemonName }) {
     error: errorDetails,
   } = useEvolutionChainDetails(evolutionChain);
 
-  const { pokemon } = usePokemonDetails(pokemonName);
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
-  if (loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
+  if (pokemonLoading || loading || loadingDetails || !pokemon) return <EvolutionChainSkeleton />;
   if (error || errorDetails)
     return (
       <p className="text-red-500 text-lg text-center px-4">
@@ -44,7 +42,7 @@ function EvolutionChain({ pokemonName }) {
           >
             <EvolutionMiniCard poke={poke} />
             {index < evolutionDetails.length - 1 && (
-              <FaArrowRight
+              <ArrowRight
                 className="text-white/80 text-2xl md:text-xl rotate-90 md:rotate-0 animate-pulse"
                 aria-hidden="true"
               />

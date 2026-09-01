@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import pokemonColors from "@/utils/pokemonColors";
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 import GlobalDetailSkeleton from "../GlobalDetailSkeleton";
 import PokemonInfo from "./PokemonInfo";
 import PokemonImage from "./PokemonImage";
@@ -13,9 +12,8 @@ const fadeIn = (delay = 0) => ({
   transition: { duration: 0.6, ease: "easeOut", delay },
 });
 
-function GlobalDetail({ name }) {
-  const isDark = useDarkTheme();
-  const { pokemon, loading, error } = usePokemonDetails(name);
+function GlobalDetail({ pokemon, loading, error }) {
+  const isDark = useTheme();
 
   if (loading) return <GlobalDetailSkeleton />;
   if (error || !pokemon)

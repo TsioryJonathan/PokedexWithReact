@@ -1,9 +1,9 @@
 import React from "react";
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 import assets from "@/assets/assets"; 
 
 function BackgroundImage() {
-  const isDark = useDarkTheme();
+  const isDark = useTheme();
   const backgroundImage = isDark
     ? assets.darkModeBg
     : assets.lightModeBg;

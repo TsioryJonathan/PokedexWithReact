@@ -1,9 +1,9 @@
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 function StatCircle({ value, max = 255, label }) {
-  const isDark = useDarkTheme();
+  const isDark = useTheme();
   const pct = Math.round((value / max) * 100);
   return (
     <div className="w-16 flex flex-col items-center">

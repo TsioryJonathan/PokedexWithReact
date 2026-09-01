@@ -1,5 +1,4 @@
 import React from "react";
-import { usePokemonDetails } from "@/hooks/usePokemonDetails";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import pokemonColors from "@/utils/pokemonColors";
@@ -18,8 +17,7 @@ const fadeUp = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function BaseStatsContent({ pokemonName }) {
-  const { pokemon, loading, error } = usePokemonDetails(pokemonName);
+export default function BaseStatsContent({ pokemon, loading, error }) {
   const bgColor = pokemonColors[pokemon?.color] || pokemonColors.default;
 
   if (loading) {

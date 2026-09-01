@@ -1,5 +1,4 @@
-import { Heart } from "lucide-react";
-import { FaMars, FaVenus, FaGenderless } from "react-icons/fa";
+import { Heart, CircleOff } from "lucide-react";
 import Label from "../Label";
 
 function GenderRatio({ male, female }) {
@@ -8,16 +7,16 @@ function GenderRatio({ male, female }) {
       <Label icon={<Heart className="text-red-400" />} text="Gender Ratio" />
       {male === null ? (
         <p className="text-sm mt-1 flex items-center gap-2">
-          <FaGenderless /> Genderless
+          <CircleOff size={16} /> Genderless
         </p>
       ) : (
         <div className="mt-2">
           <div className="flex justify-between text-xs mb-1">
             <span className="flex items-center gap-1 text-blue-200">
-              <FaMars /> {male.toFixed(1)}%
+              ♂ {male.toFixed(1)}%
             </span>
             <span className="flex items-center gap-1 text-pink-200">
-              <FaVenus /> {female.toFixed(1)}%
+              ♀ {female.toFixed(1)}%
             </span>
           </div>
           <div className="h-3 w-full bg-white/10 rounded overflow-hidden flex">

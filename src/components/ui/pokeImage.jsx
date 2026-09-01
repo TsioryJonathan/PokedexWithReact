@@ -11,6 +11,10 @@ export default function PokeImage({ pokemon, className, imageClassName, bgClassN
     <img
       src={pokemon.image}
       alt={pokemon.name}
+      loading="lazy"
+      width={96}
+      height={96}
+      decoding="async"
       className={`${imageClassName}`}
     />
   </div>

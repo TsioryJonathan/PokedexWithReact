@@ -1,4 +1,4 @@
-import useDarkTheme from "@/hooks/useDarkTheme";
+import { useTheme } from "@/contexts/ThemeContext";
 import { STAT_ORDER } from "../constants/SummaryStats";
 export const SummaryStats = ({ pokemon }) => {
   const stats = STAT_ORDER.map((key) =>
@@ -8,7 +8,7 @@ export const SummaryStats = ({ pokemon }) => {
   const total = stats.reduce((acc, s) => acc + s.value, 0);
   const average = (total / stats.length).toFixed(1);
 
-  const isDark = useDarkTheme();
+  const isDark = useTheme();
 
   return (
     <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 text-sm">
